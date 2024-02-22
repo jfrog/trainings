@@ -1,0 +1,20 @@
+{
+  "release_bundle_name": "rbv2_from_rbs",
+  "release_bundle_version": "1.0.0",
+  "skip_docker_manifest_resolution": true,
+  "source_type": "release_bundles",
+  "source": {    
+    "release_bundles": [ 
+      { 
+        "project_key": "default", 
+        "release_bundle_name": "rbv2_from_files", 
+        "release_bundle_version": "3.0.0" 
+      },
+      { 
+        "project_key": "default", 
+        "release_bundle_name": "rbv2_from_builds", 
+        "release_bundle_version": "1.0.0" 
+      } 
+    ]
+  }
+}

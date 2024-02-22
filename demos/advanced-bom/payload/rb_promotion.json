@@ -1,0 +1,5 @@
+
+{
+    "environment": "ARCHIVE",
+    "included_repository_keys": ["urs-generic-archive-local", "urs-docker-archive-local"]
+}

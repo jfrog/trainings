@@ -1,0 +1,22 @@
+{
+    "name": "global_sec",
+    "type": "security",
+    "author": "admin",
+    "rules": [
+        {
+            "name": "critical",
+            "priority": 1,
+            "actions": {
+                "block_download": {
+                    "unscanned": false,
+                    "active": false
+                }
+            },
+            "criteria": {
+                "fix_version_dependant": false,
+                "malicious_package": false,
+                "min_severity": "Critical"
+            }
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+  "release_bundle_name": "rbv2_from_aql",
+  "release_bundle_version": "3.0.0",
+  "skip_docker_manifest_resolution": true,
+  "source_type": "aql",
+  "source": {
+    "aql": "builds.find({ \"name\":  \"blueteam-app\",  \"version\" : \"3.0\" })"
+  }
+}

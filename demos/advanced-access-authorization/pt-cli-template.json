@@ -1,0 +1,20 @@
+{
+    "name": "${pt-name}",
+    "build": {
+        "include-patterns": "**",
+        "actions-groups": {
+            "uploaders": "read,write,delete"
+        }
+    },
+    "repo": {
+        "repositories": "ANY",
+        "include-patterns": "**",
+        "actions-groups": {
+            "uploaders": "read,write,annotate,delete"
+        }
+    },
+    "releaseBundle": {
+        "repositories": "ANY",
+        "include-patterns": "**"
+    }
+}

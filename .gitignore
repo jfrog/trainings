@@ -1,0 +1,12 @@
+.idea/
+*.class
+**/target/
+**/.terraform/**
+**/.terraform.*
+terraform.tfstate*
+.npmrc
+**/node_modules/
+*.tgz
+demos/old*
+labs
+*.tfvars

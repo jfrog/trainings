@@ -1,0 +1,14 @@
+{
+  "release_bundle_name": "rbv2_dimanche",
+  "release_bundle_version": "1.0.0",
+  "skip_docker_manifest_resolution": false,
+  "source_type": "artifacts",
+  "source": {
+    "artifacts": [
+      {
+        "path": "dimanche-test/JFrog_Security_workflow.pdf",
+        "checksum" : "1248d8f25a52e53a89463be5d739f91dae34d9843c470a82687895c18f2ff9bb"
+      }
+    ]
+  }
+}

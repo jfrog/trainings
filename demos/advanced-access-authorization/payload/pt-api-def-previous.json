@@ -1,0 +1,11 @@
+{
+    "name" : "uploaders2",
+    "includesPattern" : "**",
+    "excludesPattern" : "",
+    "repositories" : [ "ANY DISTRIBUTION", "ANY LOCAL", "ANY REMOTE" ],
+    "principals" : {
+      "groups" : {
+        "uploaders" : [ "r", "d", "w", "n" ]
+      }
+    }
+  }

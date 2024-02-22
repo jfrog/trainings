@@ -1,0 +1,6 @@
+{
+  "key": "dimanche-maven-archive-local",
+  "rclass": "local",
+  "packageType": "maven",
+  "projectKey" : "dimanche"
+}

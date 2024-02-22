@@ -1,0 +1,4 @@
+items.find({
+  "repo": "docker-dev-local",
+  "size" : { "$gt" : 5000000 }
+}).include("size","name","path").sort({"$desc" : ["size","name","path"]}).limit(10)
