@@ -6,8 +6,7 @@ Practice manipulating JFrog BOMs
 
 ## Create build info (only from API)
 
-> Here is the [official documentation for the JFrog CLI](https://docs.jfrog-applications.jfrog.io/jfrog-applications/jfrog-cli/cli-for-jfrog-artifactory)
-
+> Here is the [official documentation for the JFrog CLI](https://docs.jfrog-applications.jfrog.io/> Here is the [official documentation for generating Build Info per package manager](https://docs.jfrog-applications.jfrog.io/jfrog-applications/jfrog-cli/cli-for-jfrog-artifactory#package-managers-integration)
 
 1. Navigate to [shared Java project directory](../../common/java).
 2. Create build configuration:
