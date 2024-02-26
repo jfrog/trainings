@@ -2,7 +2,7 @@
 
 ## Goals
 
-Put in place a push/pull replication
+Put in place a push and a pull replication
 
 ## Create a local maven repository in the source artifactory using the UI
 
