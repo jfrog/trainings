@@ -1,13 +1,14 @@
 # Demo: Static Application Security Testing (SAST) & Software Composition Analysis (SCA) for IDE's
 
-Start Visual Studio Code, and open the directory containing this Git repository.
-
-Click the JFrog extension button on the left sidebar.
-
-Click the "Refresh" button to trigger a scan.
-
-When it's done, you will see the scan results:
-
-* 1st party code issues (SAST)
-* 3rd party vulnerabilities (SCA)
-* Suspected cleartext tokens/passwords
+1. Open IDE with source code
+2. Demo how to
+    * configure the connection to the JFrog Platform (CLI)
+    * trigger a scan (Refresh button) to display vulnerabilities (SAST + SCA)
+3. Show SCA (vulnerabilities + exposures) + SAST
+    * pick up a some vulnerabilities and SAST issues and show the vulnerability details
+    * For SAST, you can ignore issues with adding a comment "jfrog-ignore"
+4. To reduce the list of vulnerabilities, we'll display only violations (applicable) with remediations
+5. Show a pre configured watch + policy to filter only high violations with remediation + applicable
+    * explain that SAST issues aren't managed via Policies and Watches (only SCA issues)
+6. Set the watch in the IDE
+7. Show remaining violations in the IDE
