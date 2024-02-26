@@ -23,6 +23,13 @@ On the UI, go to  Xray > Indexed resources > Managed Builds
    # build app + deploy + generate Application Build Info
    jf mvn clean package deploy
 
+   # add complementary info to the Build Info
+   # git hash, git branch
+   jf bag 
+
+   # environment variables
+   jf bce
+   
    # publish Application Build Info
    jf bp 
 
