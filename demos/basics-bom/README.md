@@ -2,6 +2,8 @@
 
 ## Create build info (only from API)
 
+> Check out the ```bom-publish.sh``` script
+
 1. Navigate to [shared Java project directory](../../common/java).
 2. Create build configuration:
 
@@ -26,7 +28,7 @@ Show the Build info repository on the UI
 
 Show the existing Release Bundle repository on the UI
 
-1. From the build's screen in Artifactory, click on a build name 
+1. From the build's screen in Artifactory, click on a build name
 2. Hover over a version and click on the 3 dots on the far right
 3. Click on "Create Release Bundle".
 
@@ -48,4 +50,3 @@ After navigating to the RBv2's screen, click "Promote".
 * For Target Environment, select `RELEASE`.
 
 Click "Next", ensure that the "Target Repositories" for Maven artifacts is set properly, and click "Promote".
-
