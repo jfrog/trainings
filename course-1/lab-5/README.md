@@ -18,6 +18,8 @@ VIRTUAL | <PROJECT_KEY>-docker  | DEV | include the above repositories and set d
 
 ## Curation
 
+> Here is the [official documentation for JFrog Curation](https://jfrog.com/help/r/jfrog-curation/jfrog-curation-workflow)
+
 ### Enable curation
 
 Under "Administration" -> "Curation" -> "Curated Repositories", click the "State" toggle next to `<PROJECT_KEY>-npmjs-remote`
@@ -60,23 +62,11 @@ Switch to the "Application" sidebar, and navigate to "Curation" -> "Policies Man
 
 ### Enable Xray indexing
 
+> Here is the [official documentation for Xray indexing](https://jfrog.com/help/r/jfrog-security-documentation/add-or-remove-resources-from-indexing)
+
 1. Under "<PROJECT_NAME>" -> "Xray" -> "Indexed Resources", click the "Add repositories" and add all the created  repositories
 2. For each repository, on the far right, click on `Actions` > `Configure`
 3. Enable all the advanced scans
-
-### Create a Xray security policy
-
-1. Under "<PROJECT_NAME>" -> "Xray" -> "Watches & Policies", click on the "Policies" tab and then the "New policy" button
-2. Set "security_policy" as the policy name and click on the "New Rule" button
-3. Set "important" as the rule name
-4. Set "Medium" as the severity level and save the rule
-
-### Create a Xray watch
-
-1. Under "<PROJECT_NAME>" -> "Xray" -> "Watches & Policies", click on the "Watches" tab and then the "Setup a watch" button
-2. Set "docker" as the watch name
-3. Add the docker repositories
-4. Attach the "security_policy"
 
 ### Scan an artifact
 
@@ -94,3 +84,21 @@ Switch to the "Application" sidebar, and navigate to "Curation" -> "Policies Man
     ```
 
 3. Under "<PROJECT_NAME>" -> "Xray" -> "Scan List", check the scan results on the packages
+
+### Create a Xray security policy
+
+> Here is the [official documentation for creating a Xray policy](https://jfrog.com/help/r/jfrog-security-documentation/create-an-xray-policy)
+
+1. Under "<PROJECT_NAME>" -> "Xray" -> "Watches & Policies", click on the "Policies" tab and then the "New policy" button
+2. Set "security_policy" as the policy name and click on the "New Rule" button
+3. Set "important" as the rule name
+4. Set "Medium" as the severity level and save the rule
+
+### Create a Xray watch
+
+> Here is the [official documentation for creating a Xray watch](https://jfrog.com/help/r/jfrog-security-documentation/create-a-watch)
+
+1. Under "<PROJECT_NAME>" -> "Xray" -> "Watches & Policies", click on the "Watches" tab and then the "Setup a watch" button
+2. Set "docker" as the watch name
+3. Add the docker repositories
+4. Attach the "security_policy"

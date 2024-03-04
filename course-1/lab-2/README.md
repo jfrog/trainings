@@ -4,27 +4,34 @@
 
 Practice managing JFrog Projects
 
-## Create a JFrog Project via the UI
+> Here is the [official documentation for the JFrog Projects](https://jfrog.com/help/r/jfrog-platform-administration-documentation/get-started-with-projects)
 
-1. Select "Project All" and click on "Add project"
-2. Specify "Project Name" and a "Project Key"
-3. Click on "Create"
+via the UI:
 
-## Create a repository
+## As the Platform admin
+
+1. Create a 2 users and name respectively ```sunday``` and ```monday```
+2. Create a JFrog Project
+3. Onboard the user ```sunday``` as a Project Admin
+
+## As the Project admin (sunday)
 
 1. Create a generic repository and assign the ```DEV``` environment
+2. Onboard the user ```monday``` as a Project Admin and grant the role ```Developer```
 
-## Grant Read / Write permission
+## As the Project user (monday)
 
-1. As a Platform admin, create a ```test```` user
-2. Grant the role ```Developer```to the```test```user  via your JFrog Project home page or "you  JFrog Project home page" > Project  settings > Members
+Perform uploads/downloads to the previously created generic repository
 
-## Upload / Download artifacts
+## OPTIONAL
 
-As the  ```test``` user, perform uploads/downloads to the previouls created generic repository
+Implement the following use case :
 
-## Manipulate Roles
+QA can only download artifacts from the "Release Candidate" repository
 
-1. Update the Global Role ```Developer``` and disable the upload
-2. Create a New Global Role
-3. Create a New Project Role
+1. Create a project environment called ```QA```
+2. Create the <PROJECT-KEY>-oci-rc-local repository and assign it the ```QA```environment
+3. Create a new role called ```Testers``` :
+    + Assign it the ```QA```environment
+    + Enable only read access
+4. Assign the ```Testers``` role to a user
