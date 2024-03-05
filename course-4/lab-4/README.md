@@ -19,7 +19,7 @@
    echo $?
    ```
 
-2. Create shell script which reproduces the main steps of a simple CI pipeline:  
+2. Create a shell script which reproduces the main steps of a simple CI pipeline:  
 
    1. pull dependencies
    2. scan dependencies
@@ -36,7 +36,7 @@
    cd ../../common/java
 
    # scan the result of the maven build
-   maven clean package
+   mvn clean package
    jf scan target/*.war --watches CI --fail=false
 
    echo $?
@@ -46,4 +46,4 @@
    jf docker scan  java-app:1.0.0 --watches CI --fail=false
    ```
 
-2. Update your shell script with scanning the artifact representing your application
+2. Update your shell script by scanning the artifact representing your application
