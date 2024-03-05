@@ -96,7 +96,7 @@ jf rt search --spec="../../demos/basics-search/query-aql-cli.json"
 
 ##### GraphiQL
 
-1. In your browser, go to  `$JFROG_SAAS_DNS/metadata/api/v1/query/graphiql`and specify your access token
+1. In your browser, go to  `$JFROG_SAAS_URL/metadata/api/v1/query/graphiql` and specify your access token
 2. Extract the GraphQL query from the JSON file  '{"query" : "<QUERY_TO_EXTRACT>"}  from `../../demos/basics-search/query-graphql.json`
 3. Paste it in the query editor and execute it
 
@@ -111,5 +111,5 @@ curl \
     -XPOST \
     -H "Content-Type: application/json" \
     -d "@../../demos/basics-search/query-graphql.json" \
-$JFROG_SAAS_DNS/metadata/api/v1/query 
+$JFROG_SAAS_URL/metadata/api/v1/query 
 ```

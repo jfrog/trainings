@@ -73,14 +73,14 @@ Switch to the "Application" sidebar, and navigate to "Curation" -> "Policies Man
 1. Navigate to the [common NodeJS module](../../common/js).
 
     ```bash
-    docker build <SAAS_DNS>/<PROJECT_NAME>-docker/my-js-demo:1.0.0
+    docker build $JFROG_SAAS_DNS/<PROJECT_KEY>-docker/my-js-demo:1.0.0
     ```
 
 2. Confgure the docker client and push the image
 
     ```bash
-    docker login <SAAS_DNS>
-    docker push <SAAS_DNS>/<PROJECT_NAME>-docker/my-js-demo:1.0.0
+    docker login $JFROG_SAAS_DNS
+    docker push $JFROG_SAAS_DNS/<PROJECT_KEY>-docker/my-js-demo:1.0.0
     ```
 
 3. Under "<PROJECT_NAME>" -> "Xray" -> "Scan List", check the scan results on the packages
