@@ -1,5 +1,16 @@
 # Demo: JFrog BOM
 
+## Pre requisites
+
+Repo type | Repo key | Environment | Comment
+---|---|--- |---
+LOCAL | green-maven-dev-local | DEV |
+LOCAL | green-maven-rc-local | DEV |
+LOCAL | green-maven-release-local | PROD |
+LOCAL | green-maven-prod-local | PROD |
+REMOTE | mavencentral-remote | DEV |
+VIRTUAL | green-maven  | DEV | include the 3 repos above and set default deployement to  green-rc-maven-local
+
 ## Create build info (only from API)
 
 > Check out the ```bom-publish.sh``` script
@@ -11,10 +22,10 @@
    export JFROG_CLI_BUILD_NAME green-app  JFROG_CLI_BUILD_NUMBER 1
    
    jf mvnc \
-      --repo-deploy-releases greenteam-maven \
-      --repo-deploy-snapshots greenteam-maven \
-      --repo-resolve-releases greenteam-maven \
-      --repo-resolve-snapshots greenteam-maven
+      --repo-deploy-releases green-maven \
+      --repo-deploy-snapshots green-maven \
+      --repo-resolve-releases green-maven \
+      --repo-resolve-snapshots green-maven
    
    jf mvn clean package deploy 
 

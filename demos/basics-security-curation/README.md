@@ -1,5 +1,14 @@
 # Demo: Curation Workflow
 
+## Pre requisites
+
+1. 1 JFrog project with a project key = **green**
+2. the following repositories assigned to the JFrog Project
+
+    Repo type | Repo key | Environment | Comment
+    ---|---|--- |---
+    REMOTE | mavencentral-remote | DEV |
+
 ## Enable curation
 
 1. Ensure that Curation is enabled ("Administration" -> "Curation" -> "General" -> "Curation Service Activation").

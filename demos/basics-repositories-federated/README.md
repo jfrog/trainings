@@ -1,5 +1,17 @@
 # Demo: Binding Tokens & Federated Repositories
 
+## Pre requisites
+
+1. 2 JPDs with at least 1 Mission Control enabled
+2. Circle Of Trust via binding tokens
+3. The following repositories :
+
+   Repo type | Repo key | Environment | Comment
+   ---|---|--- |---
+   FEDERATED | green-oci-dev-fed | DEV |
+
+## Demo
+
 First, demonstrate how to use binding tokens:
 
 1. In the Administration menu, navigate to "Platform Management" -> "Deployment Bindings".

@@ -7,7 +7,7 @@
 jf audit --watches CI --fail=false --format=table
 ```
 
-* Show step in a CI pipeline (see ```secured-pipelines.sh```)
+* Show steps in a CI pipeline (see ```secured-pipelines.sh```)
 * Possibility to break a pipeline based on violations or vulnerabilities / compliance issues
 * Show results (JSON, Array)
 
@@ -21,5 +21,5 @@ jf audit --watches CI --fail=false --format=table
 ```
 
 * Show step in a CI pipeline (see ```secured-pipelines.sh```)
-* Possibility to break a pipeline based on violations or vulnerabilities / compliance issues 
+* Possibility to break a pipeline based on violations or vulnerabilities / compliance issues
 * Show results (JSON, Array) + UI

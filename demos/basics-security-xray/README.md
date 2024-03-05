@@ -1,5 +1,18 @@
 # Demo: Xray Basics
 
+## Pre requisites
+
+1. 1 JFrog project with a project key = **green**
+2. the following repositories assigned to the JFrog Project
+
+    Repo type | Repo key | Environment | Comment
+    ---|---|--- |---
+    REMOTE | mavencentral-remote | DEV |
+    REMOTE | dockerhub-remote | DEV |
+    REMOTE | npmjs-remote | DEV |
+    LOCAL | green-maven-dev-local | DEV |
+    LOCAL | green-docker-local | DEV |
+
 ## UI : JFrog Xray Policies and Watches
 
 Go to Xray > Watches & Policies

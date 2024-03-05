@@ -1,6 +1,6 @@
 #!/bin/bash
 
-maven_repo="greenteam-maven"
+maven_repo="green-maven"
 project_key=""
 
 which jf >/dev/null 2>&1

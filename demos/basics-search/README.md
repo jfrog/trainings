@@ -1,13 +1,19 @@
 # Demo: Search Capabilities
 
-## Preparation
+## Pre requisites
 
-publish a container image in `greenteam-docker-dev-local` and apply on the `manifest.json` the following custom properties :
+1. the following repositories (not relate to any JFrog Project)
 
-+ app.name=snake
-+ app.version=1.0.0
+    Repo type | Repo key | Environment | Comment
+    ---|---|--- |---
+    LOCAL | oci-dev-local | DEV |
+    LOCAL | oci-rc-local | DEV |
+    LOCAL | oci-release-local | PROD |
+    LOCAL | oci-prod-local | PROD |
 
-Generate access token  
+2. Publish a container image in `oci-dev-local` and apply on the `manifest.json` the following custom properties :
+    + app.name=snake
+    + app.version=1.0.0
 
 ## Search using AQL
 
