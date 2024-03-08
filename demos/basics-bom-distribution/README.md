@@ -7,6 +7,7 @@
 3. Reference the Edge node on Mission Control using a pairing token
 4. Upload signing key pair (GPG or PGP) to Artifactory
 5. Propagate signing public key to th Edge node
+6. Create a RBv2
 
 ## Distribution process
 

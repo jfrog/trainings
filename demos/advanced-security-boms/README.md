@@ -1,5 +1,21 @@
 # Demo: Leverage JFrog BOMs continuous scanning
 
+## Pre requisites
+
+1. The following repositories assigned to the JFrog Project
+
+   Repo type | Repo key | Environment | Comment
+   ---|---|--- |---
+   LOCAL | green-maven-dev-local | DEV |
+   LOCAL | green-maven-rc-local | DEV |
+   LOCAL | green-maven-release-local | PROD |
+   LOCAL | green-maven-prod-local | PROD |
+   REMOTE | mavencentral-remote | DEV |
+   VIRTUAL | green-maven  | DEV | include the 3 repos above and set default deployement to  green-rc-maven-local
+
+2. 1 Xray policy & watch
+
+
 ## Configure Build Info indexing in Xray
 
 On the UI, go to  Xray > Indexed resources > Managed Builds
@@ -13,8 +29,8 @@ On the UI, go to  Xray > Indexed resources > Managed Builds
 ```bash
    cd ../../common/java
 
-   MY_PROJ_KEY=""
-   MY_IMAGE="<SAAS_DNS>/${MY_PROJ_KEY}-docker/java-app:1.0.0"
+   MY_PROJ_KEY="green"
+   MY_IMAGE="${JFROG_SAAS_DNS}/${MY_PROJ_KEY}-docker/java-app:1.0.0"
    export JFROG_CLI_BUILD_NAME=${MY_PROJ_KEY}-app JFROG_CLI_BUILD_NUMBER=1
    # export JFROG_CLI_BUILD_PROJECT=${MY_PROJ_KEY}
    

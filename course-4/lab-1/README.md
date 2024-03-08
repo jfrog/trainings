@@ -1,5 +1,7 @@
 # Lab: Curation workflow
 
+> Here is the [official documentation for JFrog Curation](https://jfrog.com/help/r/jfrog-curation/jfrog-curation-workflow)
+
 ## Goal
 
 Setup a curation process to protect your developers

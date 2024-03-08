@@ -1,9 +1,14 @@
 #/bin/bash
 
+if [ ! -z "$1" ]; then
+    echo "[ERROR] No JFrog Project key  "    
+fi
+
+
 cd ../../common/java
 
 MY_PROJ_KEY=""
-MY_IMAGE="<SAAS_DNS>/${MY_PROJ_KEY}-docker/java-app:1.0.0"
+MY_IMAGE="${JFROG_SAAS_DNS}/${MY_PROJ_KEY}-docker/java-app:1.0.0"
     
 echo "*****************************"
 echo "**** SCAN DEPENDENCIES"  
@@ -26,7 +31,7 @@ echo "*****************************"
 # containerize app
 docker build \
     -t $MY_IMAGE \
-    --build-arg REGISTRY=<SAAS_DNS> \
+    --build-arg REGISTRY=${JFROG_SAAS_DNS} \
     --build-arg DOCKER_REPO=${MY_PROJ_KEY}-docker \
 .
 
@@ -34,7 +39,7 @@ echo "*****************************"
 echo "**** SCAN CONTAINER IMAGE"  
 echo "*****************************"
 
-# scan the layers of the base image
+# scan all the layers of the generated image (including the base image's layers)
 jf docker scan $MY_IMAGE --fail=false
 
 echo "*****************************"

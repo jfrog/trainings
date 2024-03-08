@@ -15,11 +15,18 @@ VIRTUAL | <PROJECT_KEY>-npm  | DEV | include the above repo
 
 ## Index Artifactory resources via UI
 
+> Here is the [official documentation for Xray indexing](https://jfrog.com/help/r/jfrog-security-documentation/add-or-remove-resources-from-indexing)
+
 1. Go to Xray > Indexed resources > repositories
 2. Verify **mavencentral-remote** and **npmjs-remote** are indexed
 3. Add a docker repository
 
 ## Create JFrog Xray Policies and Watches via UI
+
+> Here is the official documentation for creating
+>
+> * [a Xray policy](https://jfrog.com/help/r/jfrog-security-documentation/create-an-xray-policy)
+> * [a Xray watch](https://jfrog.com/help/r/jfrog-security-documentation/create-a-watch)
 
 1. Create security policy with minimum severity to High
 2. Create a license policy and blacklist APACHE-2
@@ -27,8 +34,12 @@ VIRTUAL | <PROJECT_KEY>-npm  | DEV | include the above repo
 
 ### OPTIONAL : Create JFrog Xray Policies and Watches via API
 
-> Here is the [official documentation for Policies](https://jfrog.com/help/r/xray-rest-apis/policies-v2)
-> Here is the [official documentation for Watches](https://jfrog.com/help/r/xray-rest-apis/watches)
+> Here is the official Rest API documentation for
+>
+> * [Policies](https://jfrog.com/help/r/xray-rest-apis/policies-v2)
+> * [Watches](https://jfrog.com/help/r/xray-rest-apis/watches)
+
+Examples
 
 ```bash
 curl \

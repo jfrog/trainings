@@ -15,59 +15,23 @@ LOCAL | <PROJECT_KEY>-release-maven-local | PROD |
 REMOTE | <PROJECT_KEY>-mavencentral-remote | DEV |
 VIRTUAL | <PROJECT_KEY>-maven  | DEV | include the 3 repos above and set default deployement to  <PROJECT_KEY>-rc-maven-local
 
-### Create build info (only from API)
+### Build Info (only from API)
 
-1. Navigate to [shared Java project directory](../../common/java).
-2. Create build configuration:
+> Here is the [official documentation for the Build Info](https://jfrog.com/help/r/jfrog-integrations-documentation/build-integration)
 
-   ```bash
-   export MY_PROJ_KEY=<PROJECT_KEY>
-   jf mvnc \
-      --repo-deploy-releases $MY_PROJ_KEY-maven \
-      --repo-deploy-snapshots $MY_PROJ_KEY-maven \
-      --repo-resolve-releases $MY_PROJ_KEY-maven \
-      --repo-resolve-snapshots $MY_PROJ_KEY-maven
-   ```
-
-3. Build & deploy:
+1. Generate an publish a Build Info into your project
 
    ```bash
-   export JFROG_CLI_BUILD_NAME=$MY_PROJ_KEY-app  JFROG_CLI_BUILD_NUMBER=1
-   jf mvn clean package deploy 
+      ../../demos/basics-bom/bom-publish.sh <PROJECT_KEY>-maven <PROJECT_KEY>
    ```
 
-4. Push the build info to Artifactory:
+2. Navigate on the different tabs on the Build Info
 
-   ```bash
-   jf rt bp
-   ```
+### RBv2 (from UI)
 
-Then, navigate to "Artifactory" -> "Builds", and show `green-app` and its build (`1`).
-Show the Build info repository on the UI
+> Here is the [official documentation for the Release LifeCycle Management](https://jfrog.com/help/r/jfrog-artifactory-documentation/release-lifecycle-management)
 
-### Create RBv2 (from UI)
-
-Show the existing Release Bundle repository on the UI
-
-1. From the build's screen in Artifactory, click on a build name 
-2. Hover over a version and click on the 3 dots on the far right
-3. Click on "Create Release Bundle".
-
-> You can also create a Release Bundle at the Build Version level
-
-* Release Bundle Name: `<PROJECT_KEY>-release`
-* Release Bundle Version: `1.0`
-* Signing Key: `main`
-
-Click "Next", then "Create".
-
-### Promote RBv2
-
-> The order of environment can be changed on the UI (Plaform configuration > Environments)
-
-After navigating to the RBv2's screen, click "Promote".
-
-* For Signing Key, select `main`.
-* For Target Environment, select `PROD`.
-
-Click "Next", ensure that the "Target Repositories" for Maven artifacts is set properly, and click "Promote".
+1. Generate a Release Bundle V2 from your Build Info
+2. Promote your Release Bundle V2 to the PROD environment
+3. Add an ``ÀRCHIVE`` project environment and assign it to <PROJECT_KEY>-archive-maven-local
+4. Promote your Release Bundle V2 to the ``ÀRCHIVE`` environment

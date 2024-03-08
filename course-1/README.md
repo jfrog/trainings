@@ -3,15 +3,16 @@
 ## Demos
 
 1. [Repositories basics](../demos/basics-repositories/README.md)
-2. [Search](../demos/basics-search/README.md)
-3. [Projects basics](../demos/basics-projects/README.md)
-4. [BOMs basics](../demos/basics-bom/README.md)
-5. [Federated repositories](../demos/basics-repositories-federated/README.md)
-6. [JFrog Distribution](../demos/basics-bom-distribution/README.md)
-7. [Curation](../demos/basics-security-curation/README.md)
-8. [Contextual Analysis](../demos/basics-security-contextual_analysis/README.md)
-9. [IDE](../demos/basics-security-ide/README.md)
-10. [Frogbot](../demos/basics-security-frogbot/README.md)
+2. [Artifact basics](../demos/basics-artifacts/README.md)
+3. [Search](../demos/basics-search/README.md)
+4. [Projects basics](../demos/basics-projects/README.md)
+5. [BOMs basics](../demos/basics-bom/README.md)
+6. [Federated repositories](../demos/basics-repositories-federated/README.md)
+7. [JFrog Distribution](../demos/basics-bom-distribution/README.md)
+8. [Curation](../demos/basics-security-curation/README.md)
+9. [Contextual Analysis](../demos/basics-security-contextual_analysis/README.md)
+10. [IDE](../demos/basics-security-ide/README.md)
+11. [Frogbot](../demos/basics-security-frogbot/README.md)
 
 ## Labs
 

@@ -1,5 +1,7 @@
 # Demo: Package types & Repository types
 
+## Local repositories
+
 Go to Artifactory > Repositories screen, click on "Create a repository" button
 
 Show the pre-built Setup
@@ -13,9 +15,11 @@ Select OCI package type and present basic config :
 
 + layout
 + include /exclude patterns
-+ environments (for Release Lifecycle Management & JFrog Project)
++ environments (used for Release Lifecycle Management & JFrog Project)
 
-Cancel the creation and create a remote repository. Present remonte config:
+## Remote repositories
+
+Create a OCI remote repository. Present remonte config:
 
 + authentication (pass or client certi)
 + offline mode
@@ -23,11 +27,15 @@ Cancel the creation and create a remote repository. Present remonte config:
 + remote updates from source
 + store artifacts locally
 
-Cancel the creation and create a virtual repository. Present virtual config:
+## Virtual repositories
+
+Create a virtual repository. Present virtual config:
 
 + aggregation of local and remote
 + set order per repo type
 + default deployment
 + specific config per package type (maven, npm)
 
-For the release bundle & federated and repositories, we'll deep dive later during the session
+## Release Bundle & federated repositories
+
+We'll cover them later in course 1 ;)

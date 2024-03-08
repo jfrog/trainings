@@ -6,6 +6,8 @@ Perform a push distribution
 
 ## Distribution process
 
+> Here is the [official documentation for the Distribution process](https://jfrog.com/help/r/jfrog-distribution-documentation/the-distribution-flow).
+
 1. From "Artifactory" > "Release Bundles v2", select the Release Bundle you would like to distribute.
 2. In the panel that lists the bundle's versions, hover to the right, click the three dots, and select "Distribute".
 3. Select the distribution targets.

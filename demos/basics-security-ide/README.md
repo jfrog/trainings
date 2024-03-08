@@ -1,5 +1,13 @@
 # Demo: Static Application Security Testing (SAST) & Software Composition Analysis (SCA) for IDE's
 
+## Pre requisites
+
+1. Java code sample
+2. VS Code or IntelliJ with JFrog IDE plugin installed
+3. Optional - 1 Watch + 1 Policy
+
+## Demo
+
 1. Open IDE with source code
 2. Demo how to
     * configure the connection to the JFrog Platform (CLI)

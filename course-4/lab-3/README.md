@@ -10,7 +10,7 @@
 Enable Contextual analysis on a docker repository
 If you enable it on an already indexed repository, you'll have to enable the contextual analysis on demand per artifact.
 
-## Configure the IDE plugin
+## OPTIONAL - Configure the IDE plugin
 
 1. Open IDE with source code
 2. Install the JFrog extension / plugin on the IDE

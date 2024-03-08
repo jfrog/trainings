@@ -3,8 +3,10 @@
  cd ../../common/java
 
 MY_PROJ_KEY=""
-MY_IMAGE="<SAAS_DNS>/${MY_PROJ_KEY}-docker/java-app:1.0.0"
-export JFROG_CLI_BUILD_NAME=${MY_PROJ_KEY}-app JFROG_CLI_BUILD_NUMBER=1
+MY_IMAGE="${JFROG_SAAS_DNS}/${MY_PROJ_KEY}-docker/java-app:1.0.0"
+export JFROG_CLI_BUILD_NAME=${MY_PROJ_KEY}-app \
+        JFROG_CLI_BUILD_NUMBER=1 \
+        JFROG_CLI_BUILD_URL="https://myCI.com"
 # export JFROG_CLI_BUILD_PROJECT=${MY_PROJ_KEY}
 
 echo "*****************************"
@@ -44,7 +46,7 @@ echo "*****************************"
 # containerize app
 docker build \
     -t $MY_IMAGE \
-    --build-arg REGISTRY=<SAAS_DNS> \
+    --build-arg REGISTRY=${JFROG_SAAS_DNS} \
     --build-arg DOCKER_REPO=${MY_PROJ_KEY}-docker \
 .
 

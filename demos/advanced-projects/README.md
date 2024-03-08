@@ -1,5 +1,9 @@
 # Demo: JFrog Projects
 
+## Pre requisites
+
+None
+
 ## Create a JFrog Project using API
 
 ```bash
@@ -51,7 +55,7 @@ $JFROG_SAAS_URL/access/api/v1/projects/_/attach/repositories/<REPO_KEY>/<PROJECT
 
 ### Build info
 
-export the JFROG_CLI_BUILD_PROJECT=<PROJECT_KEY> environment variable
+export the ```JFROG_CLI_BUILD_PROJECT=<PROJECT_KEY>``` environment variable
 
 ### RBv2
 

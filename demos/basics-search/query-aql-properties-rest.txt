@@ -1,5 +1,5 @@
 items.find({
-  "repo": "docker-dev-local",
+  "repo": "oci-dev-local",
   "@app.name": "snake",
   "@app.version": "1.0.0"
 })

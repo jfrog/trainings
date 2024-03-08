@@ -2,6 +2,10 @@
 
 **NOTE**: The [JSON structure for the REST API](https://jfrog.com/help/r/jfrog-rest-apis/repository-configuration-json) may not be  identical to the structure consumed by the CLI.
 
+## Pre requisites
+
+None
+
 ## Using the Rest API
 
 ```bash
