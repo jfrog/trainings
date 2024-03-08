@@ -11,3 +11,6 @@ demos/old*
 labs
 *.tfvars
 instance_list.csv
+.config
+build.yaml
+docker.yaml
