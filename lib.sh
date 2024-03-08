@@ -3,47 +3,33 @@
 # Use to disable interactive mode of the jfrog cli
 export CI=true
 
+echo "Sourcing lib.sh"
 
 #################################################################################################################################
 # Common functions
 #################################################################################################################################
 
-# Function to create repository
-Create_repo() {
-   local repo_type=$1
-   local package_type=$2
-   local url=$3
-   local instance=$4
 
-   echo "==============================="
-   echo "Create $package_type $repo_type repo in $instance"
-   echo "==============================="
-
-   RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" -u "${email}:${password}" -X PUT "https://${instance}.jfrog.io/artifactory/api/repositories/${repo_type}" -H "Content-Type: application/json" -d '{"key":"'${repo_type}'","rclass":"'${package_type}'","packageType":"'${package_type}'","url":"'${url}'","xrayIndex":true}')
-   RepoChecker ${RESPONSE_CODE}
+Create_local_repos(){
+  echo "==============================="
+  echo "Create $2 $1 repo in $3"
+  echo "==============================="
+  echo "curl -s -o /dev/null -w "%{http_code}" -u "${username}:${password}" -X PUT "https://${3}.jfrog.io/artifactory/api/repositories/${1}" -H "Content-Type: application/json" -d "{"key":"'${1}'","rclass":"local","packageType":"'${2}'","xrayIndex":true}""
+  RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" -u "${username}:${password}" -X PUT "https://${3}.jfrog.io/artifactory/api/repositories/${1}" -H "Content-Type: application/json" -d '{"key":"'${1}'","rclass":"local","packageType":"'${2}'","xrayIndex":true}')
+  echo ${RESPONSE_CODE}
+  RepoChecker ${RESPONSE_CODE}
 }
 
-# Function to create local repository
-Create_local_repos() {
-   local repo_name=$1
-   local package_type=$2
-   local instance=$3
-
-   Create_repo "$repo_name" "local" "" "$package_type" "$instance"
-}
-
-# Function to create remote repository
-Create_remote_repos() {
-   local repo_name=$1
-   local package_type=$2
-   local url=$3
-   local instance=$4
-
-   Create_repo "$repo_name" "remote" "$url" "$instance"
+Create_remote_repos(){
+  echo "==============================="
+  echo "Create $2 $1 repo in $4"
+  echo "==============================="
+  RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" -u "${email}:${password}" -X PUT "https://${4}.jfrog.io/artifactory/api/repositories/${1}" -H "Content-Type: application/json" -d '{"key":"'${1}'","rclass":"remote","packageType":"'${2}'","url":"'${3}'","xrayIndex":true}')
+  RepoChecker ${RESPONSE_CODE}
 }
 
 #Create_virtual_repos() {
-   #curl -s -u "${email}:${password}" -X PUT "https://${mothership}.jfrog.io/artifactory/api/repositories/payment-maven-dev-virtual" -H "Content-Type: application/json" -d '{"key":"payment-maven-dev-virtual","rclass":"virtual","packageType":"maven","repositories": ["payment-maven-dev-local","payment-maven-remote"],"xrayIndex":true}
+   #curl -s -u "${username}:${password}" -X PUT "https://${mothership}.jfrog.io/artifactory/api/repositories/payment-maven-dev-virtual" -H "Content-Type: application/json" -d '{"key":"payment-maven-dev-virtual","rclass":"virtual","packageType":"maven","repositories": ["payment-maven-dev-local","payment-maven-remote"],"xrayIndex":true}
 #}
 
 RepoChecker(){
