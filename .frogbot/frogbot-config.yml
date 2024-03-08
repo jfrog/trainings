@@ -1,0 +1,17 @@
+- params:
+    # Git parameters
+    git:
+      # [Mandatory]
+      # Name of the git repository to scan
+      repoName: trainings
+
+      # [Mandatory]
+      # List of branches to scan
+      branches:
+        - main
+        
+    # Frogbot scanning parameters
+    scan:
+      # [Default: true]
+      # Frogbot does not fail the task if security issues are found and this parameter is set to false
+       failOnSecurityIssues: false
