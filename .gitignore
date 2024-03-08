@@ -10,3 +10,4 @@ terraform.tfstate*
 demos/old*
 labs
 *.tfvars
+instance_list.csv

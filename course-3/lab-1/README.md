@@ -22,12 +22,8 @@ Name it `<USERNAME>-test-maven-target-remote`
 1. Go in the Replication Properties of `<USERNAME>-test-maven-src-local` repository (Artifactory > Repositories > local > `Your repository` > Replications)
 2. Select `+ Add Replication icon`
 3. Complet mandatory field has done Here
-![Alt text](res/push_rep_props.png)
-
-
 1. Press `Test` (to check the connectivity) and `Save`
 2. Enter a Cron Expression (to determines when the next replication will be triggered) `Ex: 0 15 10 * * ? *`
-![](res/cron.png)
 1. Select `Event replication`
 2. Run the Replication
 3. Check replication status (Platfom configuration > Topology > Replication)
@@ -37,12 +33,7 @@ Name it `<USERNAME>-test-maven-target-remote`
 
 1. Go in the Replication Properties of `<USERNAME>-test-maven-src-remote` repository (Artifactory > Repositories > local > `Your repository` > Replications)
 2. Change the URL with the artifactory url of `<USERNAME>-test-maven-src-local` (use the URL to file) fill `User Name` and `Password`
-3. Press Test 
-![Alt text](res/remote_url.png)
-
-
-Congrats🎊🎊🎉 You have create a smart remote repository (but it is not what we are looking for)
-
+3. Press Test
 4. Go on the `Replication` tab
 5. Select `Enable Active Replication of this Repository`
 6. Enter a Cron Expression (to determines when the next replication will be triggered) `Ex: 0 15 10 * * ? *`
