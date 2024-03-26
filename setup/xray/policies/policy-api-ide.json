@@ -1,0 +1,24 @@
+{
+    "name": "sec_ide",
+    "type": "security",
+    "author": "admin",
+    "rules": [
+        {
+            "name": "principal",
+            "priority": 1,
+            "actions": {
+                "fail_build": false,
+                "block_download": {
+                    "unscanned": false,
+                    "active": false
+                }
+            },
+            "criteria": {
+                "applicable_cves_only": true,
+                "fix_version_dependant": true,
+                "malicious_package": false,
+                "min_severity": "High"
+            }
+        }
+    ]
+}

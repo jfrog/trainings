@@ -1,0 +1,6 @@
+remoteRepositories: 
+  mavencentral-remote: null
+  dockerhub-remote: null 
+  dockerhub-oci-remote: null
+  pypi-remote: null
+  npmjs-remote: null

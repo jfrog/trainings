@@ -1,0 +1,10 @@
+version: 1
+type: maven
+resolver:
+    serverId: psemea
+    snapshotRepo: green-maven
+    releaseRepo: green-maven
+deployer:
+    serverId: psemea
+    snapshotRepo: green-maven
+    releaseRepo: green-maven

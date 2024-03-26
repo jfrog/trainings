@@ -1,0 +1,15 @@
+{
+  "display_name": "The Green Project",
+  "description": "Green project created via automation",
+  "admin_privileges": {
+    "manage_members": true,
+    "manage_resources": true,
+    "manage_security_assets": true,
+    "index_resources": true,
+    "allow_ignore_rules": true
+  },
+  "storage_quota_bytes": -1,
+  "soft_limit": false,
+  "storage_quota_email_notification": true,
+  "project_key": "green"
+}

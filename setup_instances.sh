@@ -3,12 +3,16 @@
 #Global vars
 USERNAME=${USERNAME:=pstrainenv}
 PASSWORD=${PASSWORD:=Admin1234!}
-
+non_interactive=true
+old_pwd=$(pwd)
+EC2_PEM_KEY=${EC2_PEM_KEY:=jfrog_certification.pem}
 
 # Use to disable interactive mode of the jfrog cli
 export CI=true
 
-
+# This loop keeps searching for a file named "lib.sh" by going up one directory level at a time using "cd .."
+# If the file is found, the loop breaks and the script sources "lib.sh" using "source". Finally, it changes back to the original directory using "cd -"
+while [ ! -f "./lib.sh" ]; do cd ..; done; source lib.sh; cd $old_pwd > /dev/null
 
 #################################################################################################################################
 # Loop exec
@@ -34,15 +38,83 @@ PerformValidation() {
    done
 }
 
+
 # Function to perform the setup for JPD
 Setup_jpd() {
    local csv_content=$(ReadCSV "$FILENAME")
-   rm -f ping_issues
-   while IFS="," read -r mothership second_site edge
+   while IFS="," read -r mothership second_site edge ec2
    do
-      #jf c rm "$site"
-      #jf c add --url="https://${site}.jfrog.io/" --user="${USERNAME}" --password="${PASSWORD}" --interactive=false "$site"
-      . ./course-1/lab-1/script.sh "setup" "$mothership" "$USERNAME" "$PASSWORD"
+      jf c add --url=https://${mothership}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false $mothership
+      jf c add --url=https://${second_site}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false $second_site
+      jf c add --url=https://${edge}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false $edge
+      server_url="https://${mothership}.jfrog.io"
+      server_ping ${server_url}
+      create_token ${server_url}
+      cd setup
+      ./init.sh "${mothership}" ${JFROG_ACCESS_TOKEN}
+      jf c rm $mothership 
+      jf c rm $second_site
+      jf c rm $edge
+   done <<< "$csv_content"
+}
+
+Setup_ec2(){
+   local csv_content=$(ReadCSV "$FILENAME")
+   while IFS="," read -r mothership second_site edge ec2
+   do
+    vm=$(echo ${ec2} | awk '{print $NF}')
+    echo "==============================="
+    echo "Setup EC2 ${vm} and link it to ${mothership} instance"
+    echo "==============================="
+    echo "Uplate the following instance ${vm}"
+    ls -all ${EC2_PEM_KEY}
+    echo "ssh -i "${EC2_PEM_KEY}" -o StrictHostKeyChecking=no ${vm}"
+      ssh -i "${EC2_PEM_KEY}" -o StrictHostKeyChecking=no ${vm}  << EOF
+      sudo apt update -y
+      sudo apt install docker -y
+      sudo usermod -a -G docker ubuntu
+      newgrp docker
+
+      echo "==============================="
+      echo "remove and clone https://github.com/jfrog/trainings repository"
+      echo "==============================="
+      rm -rf trainings
+      git clone https://github.com/jfrog/trainings --dept=1 || true
+      cd trainings
+      source lib.sh
+      echo "==============================="
+      echo "Configure the instance to the following JPD ${mothership}"
+      echo "==============================="
+      echo "Cli version : $(jf --version)"
+      jf c rm --quiet
+      jf c add --url=https://${mothership}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false mothership
+      jf c add --url=https://${second_site}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false second_site
+      jf c add --url=https://${edge}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false edge
+      jf c use mothership
+      jf c s
+      #echo "==============================="
+      echo "verify versions"
+      echo "==============================="
+      echo "Npm version : $(npm -version)"
+      echo "Node version : $(node -v)"
+      echo "Docker version : $(docker -v)"
+      echo "Maven version : $(mvn -version)"
+      echo "Cli version : $(jf --version)"
+      echo "==============================="
+      echo "Testing docker"
+      echo "==============================="
+      #docker pull hello-world
+      #docker run hello-world
+      #docker images | grep ics
+      echo "==============================="
+      echo "Testing Terraform"
+      echo "==============================="
+      #terraform --version
+      echo "==============================="
+      echo "verify clone"
+      echo "==============================="
+      ls SwampUp2023
+EOF
    done <<< "$csv_content"
 }
 
@@ -56,7 +128,8 @@ help() {
     echo "Options:"
     echo "  -f, --file FILENAME     Specify the filename (mandatory)"
     echo "  -t, --test              Perform test"
-    echo "  -s, --setup             Perform setup"
+    echo "  -sj, --jpd              Perform JPD setup"
+    echo "  -se, --ec2              Perform EC2 setup"
     echo "  -h, --help              Display this help message"
 }
 
@@ -85,6 +158,10 @@ while [[ $# -gt 0 ]]; do
          PERFORM_SETUP=1
          shift # past argument
          ;;
+      -se|--ec2)
+         SETUP_EC2=1
+         shift # past argument
+         ;;
       -h|--help)
          help  # Call the help function
          exit 0
@@ -109,4 +186,10 @@ if [ "$PERFORM_SETUP" ]; then
    echo "Performing setup..."
    Setup_jpd
    echo "Setup completed."
+fi
+
+if [ "$SETUP_EC2" ]; then
+   echo "Performing setup of ec2..."
+   Setup_ec2
+   echo "Ec2 Setup completed."
 fi

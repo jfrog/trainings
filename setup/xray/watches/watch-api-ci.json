@@ -1,0 +1,59 @@
+{
+    "general_data": {
+        "name": "green-team",
+        "description": "for audit an on demand scanning",
+        "active": true
+    },
+    "project_resources": {
+        "resources": [
+            {
+                "type": "repository",
+                "bin_mgr_id": "default",
+                "name": "green-oci-dev-local"
+            },
+            {
+                "type": "all-repos",
+                "bin_mgr_id": "default",
+                "filters": [
+                    {
+                        "type": "package-type",
+                        "value": "Docker"
+                    },
+                    {
+                        "type": "package-type",
+                        "value": "Oci"
+                    },
+                    {
+                        "type": "package-type",
+                        "value": "maven"
+                    },
+                    {
+                        "type": "package-type",
+                        "value": "npm"
+                    }
+                ]
+            },
+            {
+                "type": "all-releaseBundlesV2",
+                "name": "All Release Bundles V2",
+                "bin_mgr_id": "default"
+              }
+        ]
+    },
+    "assigned_policies": [
+        {
+            "name": "sec_ci_pipes",
+            "type": "security"
+        }
+    ],
+    "ticket_generation": {
+        "create_duplicate_tickets": {
+            "by_version": {
+                "build": false,
+                "package": false,
+                "release_bundle": false
+            }
+        },
+        "impact_path_profiles_mapping": {}
+    }
+}

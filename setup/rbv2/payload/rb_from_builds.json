@@ -1,0 +1,22 @@
+{
+  "release_bundle_name": "rbv2_from_builds",
+  "release_bundle_version": "1.0.0",
+  "skip_docker_manifest_resolution": true,
+  "source_type": "builds",
+  "source": {
+    "builds": [
+      {
+        "build_repository": "green-build-info",
+        "build_name": "green-java-app",
+        "build_number": "1",
+        "include_dependencies": false
+      },
+      {
+        "build_repository": "green-build-info",
+        "build_name": "green-js-app",
+        "build_number": "1",
+        "include_dependencies": false
+      }
+    ]
+  }
+}
