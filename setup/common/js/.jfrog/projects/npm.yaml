@@ -2,4 +2,4 @@ version: 1
 type: npm
 resolver:
     repo: green-npm
-    serverId: psemea
+    serverId: ${saas_id}
