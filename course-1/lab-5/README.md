@@ -8,13 +8,13 @@ Understand Curation and JFrog Xray products
 
 in your JFrog Project, create the following repositories :
 
-Repo type | Repo key | Environment | Comment
----|---|---
-REMOTE | <PROJECT_KEY>-npmjs-remote | DEV | for curation
-VIRTUAL | <PROJECT_KEY>-npm  | DEV | include <PROJECT_KEY>-npmjs-remote
-REMOTE | <PROJECT_KEY>-dockerhub-remote | DEV |
-REMOTE | <PROJECT_KEY>-release-docker-local | DEV |
-VIRTUAL | <PROJECT_KEY>-docker  | DEV | include the above repositories and set default deployment repo to PROJECT_KEY>-release-docker-local
+Repo type | Repo key | Package type | Environment | Comment
+---|---|---|---|---
+REMOTE | <PROJECT_KEY>-npmjs-remote | NPM | DEV | for curation
+VIRTUAL | <PROJECT_KEY>-npm  | NPM | DEV | include <PROJECT_KEY>-npmjs-remote
+REMOTE | <PROJECT_KEY>-dockerhub-remote | DOCKER | DEV |
+REMOTE | <PROJECT_KEY>-docker-release-local | DOCKER | DEV |
+VIRTUAL | <PROJECT_KEY>-docker  | DOCKER | DEV | include the above repositories and set default deployment repo to <PROJECT_KEY>-docker-release-local
 
 ## Curation
 

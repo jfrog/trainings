@@ -10,10 +10,10 @@ in your JFrog Project, create the following repositories :
 
 Repo type | Repo key | Environment | Comment
 ---|---|--- |---
-LOCAL | <PROJECT_KEY>-rc-maven-local | DEV |
-LOCAL | <PROJECT_KEY>-release-maven-local | PROD |
+LOCAL | <PROJECT_KEY>-maven-rc-local | DEV |
+LOCAL | <PROJECT_KEY>-maven-release-local | PROD |
 REMOTE | <PROJECT_KEY>-mavencentral-remote | DEV |
-VIRTUAL | <PROJECT_KEY>-maven  | DEV | include the 3 repos above and set default deployement to  <PROJECT_KEY>-rc-maven-local
+VIRTUAL | <PROJECT_KEY>-maven  | DEV | include the 3 repos above and set default deployement to  <PROJECT_KEY>-maven-rc-local
 
 ### Build Info (only from API)
 
@@ -25,7 +25,7 @@ VIRTUAL | <PROJECT_KEY>-maven  | DEV | include the 3 repos above and set default
       ../../demos/basics-bom/bom-publish.sh <PROJECT_KEY>-maven <PROJECT_KEY>
    ```
 
-2. Navigate on the different tabs on the Build Info
+2. Go to the Build info section > select a version and navigate on teh different tabs
 
 ### RBv2 (from UI)
 
