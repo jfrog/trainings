@@ -7,7 +7,7 @@ Perform basics actions via the UI & API regarding artifacts management
 ## Create a repository using the UI
 
 1. Navigate to "Artifactory" -> "Repositories"
-2. Create a new generic repository and name it  `<USERNAME>-test-generic-local`
+2. Create a new generic repository and name it  `<USERNAME>-generic-test-local`
 
 ## Upload / Download
 

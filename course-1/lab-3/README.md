@@ -8,12 +8,12 @@ Practice manipulating JFrog BOMs
 
 in your JFrog Project, create the following repositories :
 
-Repo type | Repo key | Environment | Comment
----|---|--- |---
-LOCAL | <PROJECT_KEY>-maven-rc-local | DEV |
-LOCAL | <PROJECT_KEY>-maven-release-local | PROD |
-REMOTE | <PROJECT_KEY>-mavencentral-remote | DEV |
-VIRTUAL | <PROJECT_KEY>-maven  | DEV | include the 3 repos above and set default deployement to  <PROJECT_KEY>-maven-rc-local
+Repo type | Repo key | Package type | Environment | Comment
+---|---|--- |--- |---
+LOCAL | <PROJECT_KEY>-maven-rc-local | MAVEN | DEV |
+LOCAL | <PROJECT_KEY>-maven-release-local | MAVEN | PROD |
+REMOTE | <PROJECT_KEY>-mavencentral-remote | MAVEN | DEV |
+VIRTUAL | <PROJECT_KEY>-maven | MAVEN | DEV | include the 3 repos above and set default deployement to  <PROJECT_KEY>-maven-rc-local
 
 ### Build Info (only from API)
 
