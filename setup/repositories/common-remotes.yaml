@@ -1,0 +1,36 @@
+remoteRepositories: 
+  mavencentral-remote:
+    type: maven
+    repoLayout: maven-2-default 
+    url: https://repo1.maven.org/maven2/
+    xray:   
+      enabled: true
+  dockerhub-remote:
+    type: docker 
+    url: https://registry-1.docker.io/
+    dockerApiVersion: V2
+    repoLayout: simple-default 
+    enableTokenAuthentication: true
+    xray:   
+      enabled: true
+  dockerhub-oci-remote:
+    type: oci 
+    url: https://registry-1.docker.io/
+    dockerApiVersion: V2
+    repoLayout: simple-default 
+    enableTokenAuthentication: true
+    xray:   
+      enabled: true
+  pypi-remote:
+    type: pypi 
+    url: https://files.pythonhosted.org 
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  npmjs-remote:
+    type: npm 
+    url: https://registry.npmjs.org
+    repoLayout: npm-default 
+    xray:   
+      enabled: true
+

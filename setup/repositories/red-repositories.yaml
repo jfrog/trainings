@@ -1,0 +1,144 @@
+localRepositories:   
+  red-maven-dev-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  red-maven-rc-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  red-maven-release-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  red-maven-prod-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  red-oci-dev-local:
+    type: oci
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  red-oci-rc-local:
+    type: oci
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  red-oci-release-local:
+    type: oci
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  red-helm-dev-local:
+    type: oci
+    repoLayout: simple-default 
+    xray:   
+      enabled: false
+  red-helm-release-local:
+    type: oci
+    repoLayout: simple-default 
+    xray:   
+      enabled: false
+  red-generic-dev-local:
+    type: generic
+    repoLayout: simple-default 
+    xray:   
+      enabled: false
+  red-generic-release-local:
+    type: generic
+    repoLayout: simple-default 
+    xray:   
+      enabled: false
+  red-python-dev-local:
+    type: pypi
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  red-python-rc-local:
+    type: pypi
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  red-python-release-local:
+    type: pypi
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  red-npm-dev-local:
+    type: npm
+    repoLayout: npm-default 
+    xray:   
+      enabled: true
+  red-npm-rc-local:
+    type: npm
+    repoLayout: npm-default 
+    xray:   
+      enabled: true
+  red-npm-release-local:
+    type: npm
+    repoLayout: npm-default 
+    xray:   
+      enabled: true
+
+# 
+virtualRepositories: 
+  red-maven:
+    type: maven
+    repoLayout: maven-2-default
+    repositories:
+      - red-maven-dev-local
+      - red-maven-rc-local
+      - red-maven-release-local
+      - red-maven-prod-local
+      - mavencentral-remote
+    defaultDeploymentRepo: red-maven-dev-local
+  red-oci:
+    type: oci
+    repoLayout: simple-default 
+    repositories:   
+      - red-oci-dev-local
+      - red-oci-rc-local
+      - red-oci-release-local
+      - dockerhub-oci-remote
+    defaultDeploymentRepo: red-oci-dev-local
+  red-helm:
+    type: oci
+    repoLayout: simple-default 
+    repositories:   
+      - red-helm-dev-local
+      - red-helm-release-local
+    defaultDeploymentRepo: red-helm-dev-local
+  red-generic:
+    type: generic
+    repoLayout: simple-default 
+    repositories:   
+      - red-generic-dev-local
+      - red-generic-release-local
+    defaultDeploymentRepo: red-generic-dev-local
+  red-python:
+    type: pypi
+    repoLayout: simple-default 
+    repositories:   
+      - red-python-dev-local
+      - red-python-rc-local
+      - red-python-release-local
+      - pypi-remote
+    defaultDeploymentRepo: red-python-dev-local
+  red-npm:
+    type: npm
+    repoLayout: npm-default 
+    repositories:   
+      - red-npm-dev-local
+      - red-npm-rc-local
+      - red-npm-release-local
+      - npmjs-remote
+    defaultDeploymentRepo: red-npm-dev-local
+

@@ -1,0 +1,9 @@
+{
+    "builds": [
+        {
+            "name": "green-js-app",
+            "number": "1",
+            "projectKey": "green"
+        }
+    ]
+}

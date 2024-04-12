@@ -1,0 +1,63 @@
+{
+    "general_data": {
+        "name": "prod",
+        "description": "for the dashboards in prod",
+        "active": true
+    },
+    "project_resources": {
+        "resources": [
+            {
+                "type": "all-builds",
+                "bin_mgr_id": "default",
+                "filters": [
+                    {
+                        "type": "ant-patterns",
+                        "value": {
+                            "IncludePatterns": [
+                                "*js*/*",
+                                "*java*/*"
+                            ]
+                        }
+                    }
+
+                ]
+            },
+            {
+                "type": "repository",
+                "bin_mgr_id": "default",
+                "name": "green-oci-prod-local"
+            },
+            {
+                "type": "repository",
+                "bin_mgr_id": "default",
+                "name": "green-docker-prod-local"
+            },
+            {
+                "type": "repository",
+                "bin_mgr_id": "default",
+                "name": "green-maven-prod-local"
+            },
+            {
+                "type": "repository",
+                "bin_mgr_id": "default",
+                "name": "green-generic-prod-local"
+            }
+        ]
+    },
+    "assigned_policies": [
+        {
+            "name": "sec_continuous_scan",
+            "type": "security"
+        }
+    ],
+    "ticket_generation": {
+        "create_duplicate_tickets": {
+            "by_version": {
+                "build": false,
+                "package": false,
+                "release_bundle": false
+            }
+        },
+        "impact_path_profiles_mapping": {}
+    }
+}

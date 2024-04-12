@@ -1,0 +1,8 @@
+localRepositories:   
+  green-maven-dev-local: null
+  green-docker-dev-local: null
+  green-docker-rc-local: null
+  green-oci-dev-local: null
+  green-oci-rc-local: null
+  green-generic-dev-local: null
+  green-generic-release-local: null

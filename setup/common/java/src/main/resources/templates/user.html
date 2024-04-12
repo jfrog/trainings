@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" /> 
+</head>
+
+<body>
+    <div th:replace="~{fragments/header :: header}"/>
+
+    <div class="container">
+        <h2>Image Gallery</h2>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div th:each="image, iterStat: ${images}" class="col">
+                <div class="img-thumbnail rounded">
+                    <a th:href="@{${mypath} + ${image}}" target="_blank">
+                        <img th:src="@{'/' + ${image}}" alt="Lights" style="width:100%">
+                        <div class="caption">
+                            <p th:text="${image}"/>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"/>
+
+</body>
+
+</html>

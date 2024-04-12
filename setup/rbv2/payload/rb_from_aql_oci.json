@@ -1,0 +1,8 @@
+{
+  "release_bundle_name": "rbv2_from_aql",
+  "release_bundle_version": "1.1.0",
+  "source_type": "aql",
+  "source": {    
+    "aql": "items.find({\"repo\": \"green-oci-dev-local\", \"$or\" : [{\"path\": \"java-demo/0.1.0\"},{\"path\": \"js-demo/0.1.0\"}] })"
+  }
+}

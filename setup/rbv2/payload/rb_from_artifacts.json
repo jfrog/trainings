@@ -1,0 +1,14 @@
+{
+  "release_bundle_name": "rbv2_from_artifacts",
+  "release_bundle_version": "1.0.0",
+  "skip_docker_manifest_resolution": false,
+  "source_type": "artifacts",
+  "source": {
+    "artifacts": [
+      {
+        "path": "green-docker-dev-local/js-demo/0.1.0/manifest.json",
+        "checksum": "3d6d211d3ac1153b97d1dbcd9c1b55900358abcfd1b5a5359eb39d41b35c307b"
+      }
+    ]
+  }
+}

@@ -1,0 +1,191 @@
+localRepositories:   
+  green-maven-dev-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  green-maven-rc-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  green-maven-release-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  green-maven-prod-local:
+    type: maven
+    repoLayout: maven-2-default 
+    xray:   
+      enabled: true
+  green-docker-dev-local:
+    type: docker
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-docker-rc-local:
+    type: docker
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-docker-release-local:
+    type: docker
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-docker-prod-local:
+    type: docker
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-oci-dev-local:
+    type: oci
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-oci-rc-local:
+    type: oci
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-oci-release-local:
+    type: oci
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-oci-prod-local:
+    type: oci
+    ociApiVersion: V2
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-helm-dev-local:
+    type: oci
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-helm-release-local:
+    type: oci
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-generic-dev-local:
+    type: generic
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-generic-release-local:
+    type: generic
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-generic-prod-local:
+    type: generic
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-python-dev-local:
+    type: pypi
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-python-rc-local:
+    type: pypi
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-python-release-local:
+    type: pypi
+    repoLayout: simple-default 
+    xray:   
+      enabled: true
+  green-npm-dev-local:
+    type: npm
+    repoLayout: npm-default 
+    xray:   
+      enabled: true
+  green-npm-rc-local:
+    type: npm
+    repoLayout: npm-default 
+    xray:   
+      enabled: true
+  green-npm-release-local:
+    type: npm
+    repoLayout: npm-default 
+    xray:   
+      enabled: true
+
+# 
+virtualRepositories: 
+  green-maven:
+    type: maven
+    repoLayout: maven-2-default
+    repositories:
+      - green-maven-dev-local
+      - green-maven-rc-local
+      - green-maven-release-local
+      - green-maven-prod-local
+      - mavencentral-remote
+    defaultDeploymentRepo: green-maven-dev-local
+  green-oci:
+    type: oci
+    repoLayout: simple-default 
+    repositories:   
+      - green-docker-dev-local
+      - green-docker-rc-local
+      - green-docker-release-local
+      - green-docker-prod-local
+      - dockerhub-oci-remote
+    defaultDeploymentRepo: green-docker-dev-local
+  green-oci:
+    type: oci
+    repoLayout: simple-default 
+    repositories:   
+      - green-oci-dev-local
+      - green-oci-rc-local
+      - green-oci-release-local
+      - green-oci-prod-local
+      - dockerhub-oci-remote
+    defaultDeploymentRepo: green-oci-dev-local
+  green-helm:
+    type: oci
+    repoLayout: simple-default 
+    repositories:   
+      - green-helm-dev-local
+      - green-helm-release-local
+    defaultDeploymentRepo: green-helm-dev-local
+  green-generic:
+    type: generic
+    repoLayout: simple-default 
+    repositories:   
+      - green-generic-dev-local
+      - green-generic-release-local
+      - green-generic-prod-local
+    defaultDeploymentRepo: green-generic-dev-local
+  green-python:
+    type: pypi
+    repoLayout: simple-default 
+    repositories:   
+      - green-python-dev-local
+      - green-python-rc-local
+      - green-python-release-local
+      - pypi-remote
+    defaultDeploymentRepo: green-python-dev-local
+  green-npm:
+    type: npm
+    repoLayout: npm-default 
+    repositories:   
+      - green-npm-dev-local
+      - green-npm-rc-local
+      - green-npm-release-local
+      - npmjs-remote
+    defaultDeploymentRepo: green-npm-dev-local
+

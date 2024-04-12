@@ -15,4 +15,3 @@
     + [RBv2 Distribution](../labs/rbv2-distribution/README.md)
 1. Bidirectional transfer
     + [Federated Repositories](../labs/federated-repositories/README.md)
-

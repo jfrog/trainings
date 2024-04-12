@@ -1,0 +1,37 @@
+{
+    "general_data": {
+        "name": "ide",
+        "description": "to be set referenced in the developers'IDE",
+        "active": true
+    },
+    "project_resources": {
+        "resources": [{
+            "type": "repository",
+            "bin_mgr_id": "default",
+            "name": "dockerhub-remote",
+            "repo_type": "remote",
+            "filters": [
+                {
+                    "type": "regex",
+                    "value": ".*"
+                }
+            ]
+        }]
+    },
+    "assigned_policies": [
+        {
+            "name": "sec_ide",
+            "type": "security"
+        }
+    ],
+    "ticket_generation": {
+        "create_duplicate_tickets": {
+            "by_version": {
+                "build": false,
+                "package": false,
+                "release_bundle": false
+            }
+        },
+        "impact_path_profiles_mapping": {}
+    }
+}
