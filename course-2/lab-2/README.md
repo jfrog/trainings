@@ -6,20 +6,20 @@ Be familiar with the API, the JFrog CLI, JFrog's Terraform provider capabilities
 
 ## Create a repository structure using the Rest API
 
-Create the following repositories :
+> Come up with a ```<PROJECT_KEY>``` which will be used as prefix for all your repositories
 
-Repo type | Repo key | Environment | Comment
----|---|--- |---
-LOCAL | <PROJECT_KEY>-dev-maven-local | DEV |
-LOCAL | <PROJECT_KEY>-rc-maven-local | DEV |
-LOCAL | <PROJECT_KEY>-release-maven-local | PROD |
-LOCAL | <PROJECT_KEY>-prod-maven-local | PROD |
-REMOTE | mavencentral-remote | DEV |
-VIRTUAL | <PROJECT_KEY>-maven  | DEV | include the 3 repos above and set default deployement to  <PROJECT_KEY>-rc-maven-local
+Create the following repositories using the Rest API
 
-Assign a value to ```<PROJECT_KEY>```
+Repo type | Repo key | Package type | Environment | Comment
+---|---|--- |---|---
+LOCAL | <PROJECT_KEY>-maven-dev-local | MAVEN | DEV |
+LOCAL | <PROJECT_KEY>-maven-rc-local | MAVEN | DEV |
+LOCAL | <PROJECT_KEY>-maven-release-local | MAVEN | PROD |
+LOCAL | <PROJECT_KEY>-maven-prod-local | MAVEN | PROD |
+REMOTE | mavencentral-remote | MAVEN | DEV |
+VIRTUAL | <PROJECT_KEY>-maven | MAVEN | DEV | include the 3 repos above and set default deployement to  <PROJECT_KEY>-maven-rc-local
 
-Use the REST API to create the repositories
+Use the following cUrl command to create one repository at a time. You can edit the JSON payload located in **../../demos/advanced-repository/payload/repo-api-def.json** or create a new one for each execution
 
 ```bash
 # be careful the repository key has to be part of the URL and match the "key" in the JSON payload !
@@ -33,16 +33,18 @@ curl \
 
 ## Create a repository structure using the JFrog CLI
 
+> with this option, you rely on templates (that you can parameterize) for creating your repositories
+
 Create the following repositories :
 
-Repo type | Repo key | Environment | Comment
----|---|--- |---
-LOCAL | <PROJECT_KEY>-dev-oci-local | DEV |
-LOCAL | <PROJECT_KEY>-rc-oci-local | DEV |
-LOCAL | <PROJECT_KEY>-release-oci-local | PROD |
-LOCAL | <PROJECT_KEY>-prod-oci-local | PROD |
-REMOTE | dockerhub-remote | DEV |
-VIRTUAL | <PROJECT_KEY>-oci | DEV | include the oci repos above and set default deployement to  <PROJECT_KEY>-rc-oci-local
+Repo type | Repo key | Package type | Environment | Comment
+---|---|--- |---|---
+LOCAL | <PROJECT_KEY>-oci-dev-local | OCI |DEV |
+LOCAL | <PROJECT_KEY>-oci-rc-local | OCI |DEV |
+LOCAL | <PROJECT_KEY>-oci-release-local | OCI |PROD |
+LOCAL | <PROJECT_KEY>-oci-prod-local | OCI | PROD |
+REMOTE | dockerhub-remote | OCI | DEV |
+VIRTUAL | <PROJECT_KEY>-oci | OCI | DEV | include the oci repos above and set default deployement to  <PROJECT_KEY>-oci-rc-local
 
 1. Use the repository creation template command to generate a JSON file describing the repository:
 
@@ -68,27 +70,33 @@ VIRTUAL | <PROJECT_KEY>-oci | DEV | include the oci repos above and set default 
    done
    ```
 
-## Create a repository structure using the Rest API (YAML PATCH)
+## [OPTIONAL] Create a repository structure using the Rest API (YAML PATCH)
+
+> with this option, you can create multiple repositories in 1 API call. However you can't :
+>
+> - parameterize your repo configuration
+> - set the environment field
 
 Create the following repositories :
 
-Repo type | Repo key | Environment | Comment
----|---|--- |---
-LOCAL | <PROJECT_KEY>-dev-npm-local | DEV |
-LOCAL | <PROJECT_KEY>-rc-npm-local | DEV |
-LOCAL | <PROJECT_KEY>-release-npm-local | PROD |
-LOCAL | <PROJECT_KEY>-prod-npm-local | PROD |
-REMOTE | npmjs-remote | DEV |
-VIRTUAL | <PROJECT_KEY>-npm  | DEV | include the repos above and set default deployement to  <PROJECT_KEY>-rc-npm-local
-LOCAL | <PROJECT_KEY>-dev-generic-local | DEV |
-LOCAL | <PROJECT_KEY>-rc-generic-local | DEV |
-LOCAL | <PROJECT_KEY>-release-generic-local | PROD |
-LOCAL | <PROJECT_KEY>-prod-generic-local | PROD |
-VIRTUAL | <PROJECT_KEY>-generic  | DEV | include the generic repos above and set default deployement to  <PROJECT_KEY>-rc-generic-local
+Repo type | Repo key | Package type | Environment | Comment
+---|---|--- |---|---
+LOCAL | <PROJECT_KEY>-npm-dev-local | NPM | DEV |
+LOCAL | <PROJECT_KEY>-npm-rc-local | NPM |DEV |
+LOCAL | <PROJECT_KEY>-npm-release-local | NPM |PROD |
+LOCAL | <PROJECT_KEY>-npm-prod-local | NPM | PROD |
+REMOTE | npmjs-remote | NPM |DEV |
+VIRTUAL | <PROJECT_KEY>-npm | NPM | DEV | include the repos above and set default deployement to  <PROJECT_KEY>-rc-npm-local
+LOCAL | <PROJECT_KEY>-generic-dev-local | GENERIC |DEV |
+LOCAL | <PROJECT_KEY>-generic-rc-local | GENERIC | DEV |
+LOCAL | <PROJECT_KEY>-generic-release-local | GENERIC | PROD |
+LOCAL | <PROJECT_KEY>-generic-prod-local | GENERIC | PROD |
+VIRTUAL | <PROJECT_KEY>-generic | GENERIC | DEV | include the generic repos above and set default deployement to  <PROJECT_KEY>>-generic-rc-local
 
 ```bash
-   # don't use -d option to specify the YAML file
-   # environment field cannot be set (yet)
+   # NOTES :
+   #   - don't use -d option to specify the YAML file
+   #   - environment field cannot be set (yet)
    jf rt curl \
          -X PATCH \
          -H "Content-Type: application/yaml" \
@@ -96,13 +104,13 @@ VIRTUAL | <PROJECT_KEY>-generic  | DEV | include the generic repos above and set
          api/system/configuration
 ```
 
-## Create a repository structure using the JFrog's Terraform Provider
+## [OPTIONAL] Create a repository structure using the JFrog's Terraform Provider
 
 An example Terraform module is provided: [repository-create.tf](repository-create.tf).
 create my.tfvars with the following variables :
 
-+ artifactory_url
-+ artifactory_access_token
+- artifactory_url
+- artifactory_access_token
 
 **More info on the [JFrog official doc](https://registry.terraform.io/providers/jfrog/artifactory/latest/docs)**
 

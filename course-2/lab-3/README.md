@@ -6,7 +6,9 @@ Practice manipulating JFrog BOMs
 
 ## Create build info (only from API)
 
-> Here is the [official documentation for the JFrog CLI](https://docs.jfrog-applications.jfrog.io/> Here is the [official documentation for generating Build Info per package manager](https://docs.jfrog-applications.jfrog.io/jfrog-applications/jfrog-cli/cli-for-jfrog-artifactory#package-managers-integration)
+> Here is the [official documentation for the JFrog CLI](https://docs.jfrog-applications.jfrog.io/)
+
+> Here is the [official documentation for generating Build Info per package manager](https://docs.jfrog-applications.jfrog.io/jfrog-applications/jfrog-cli/cli-for-jfrog-artifactory#package-managers-integration)
 
 1. Navigate to [shared Java project directory](../../common/java).
 2. Create build configuration:
@@ -87,7 +89,7 @@ curl \
 $JFROG_SAAS_URL/lifecycle/api/v2/release_bundle 
 ```
 
-## Promotion via the API
+## [OPTIONAL] Promotion via the API
 
 Perform a 1st promotion of your Release Bundle V2
 
@@ -101,7 +103,7 @@ curl \
 $JFROG_SAAS_URL/lifecycle/api/v2/promotion/records/rbv2_from_files/3.0.0 
 ```
 
-## Promotion via the JFrog CLI
+## [OPTIONAL] Promotion via the JFrog CLI
 
 Perform a 2nd promotion of your Release Bundle V2
 
@@ -109,7 +111,7 @@ Perform a 2nd promotion of your Release Bundle V2
 jf rbp  --signing-key="rbv2_no_pass" --overwrite=true <RBv2_NAME> <RBv2_VERSION> <ENV>
 ```
 
-## Deletion promotion via the API
+## [OPTIONAL] Deletion promotion via the API
 
 > No deletion via the JFrog CLI
 

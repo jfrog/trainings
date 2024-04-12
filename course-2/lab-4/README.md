@@ -21,21 +21,21 @@ $JFROG_SAAS_URL/access/api/v1/projects
 
 ## Provision repositories
 
-> Here is the [official documentation for Environments](https://jfrog.com/help/r/jfrog-rest-apis/environments)
-
-1. Move / Assign existing repositories to your JFrog Project using the UI and then API
-2. Create new repositories in your JFrog Project using the UI and then API
+1. [Move / Assign](https://jfrog.com/help/r/jfrog-platform-administration-documentation/step-3-add-or-assign-resources-to-projects) existing repositories to your JFrog Project using the UI and then API
+2. [OPTIONAL] Create new repositories in your JFrog Project using the UI and then API
 
 ## Publish BOMs
 
-1. Publish Build Info
-2. Publish RBv2
+1. Publish Build Info to a JFrog Project by setting up the **JFROG_CLI_BUILD_PROJECT** env variable with your <PROJECT_KEY> (see Lab-3)
+2. [OPTIONAL] Publish RBv2
 
 ## Configure a security process
 
-> Here is the [official documentation for Roles](https://jfrog.com/help/r/jfrog-rest-apis/global-roles)
-> Here is the [official documentation for Policies](https://jfrog.com/help/r/xray-rest-apis/policies-v2)
-> Here is the [official documentation for Watches](https://jfrog.com/help/r/xray-rest-apis/watches)
+> Here are the :
+>
+> * [official documentation for Roles](https://jfrog.com/help/r/jfrog-rest-apis/global-roles)
+> * [official documentation for Policies](https://jfrog.com/help/r/xray-rest-apis/policies-v2)
+> * [official documentation for Watches](https://jfrog.com/help/r/xray-rest-apis/watches)
 
 1. Create a new Project role named **Security Champion** role which can't create polices but can manage watches & reports
 2. Create a Xray Global security policy
