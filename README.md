@@ -22,7 +22,8 @@ export JFROG_SAAS_URL="https://$JFROG_SAAS_DNS"
 
 curl -u '<USERNAME>:<PASSWORD>' -XPOST "$JFROG_SAAS_URL/access/api/v1/tokens" -d "scope=applied-permissions/user"
 
-# Export the access token in an environment variable for conveniency
+# Export the access token in an environment variable for convenience.
+# Also, this environment variable is automatically used by the JFrog Terraform provider.
 export JFROG_ACCESS_TOKEN=<your_access_token>
 
 jf c add jfrog-saas --interactive=false --url=$JFROG_SAAS_URL --access-token=$JFROG_ACCESS_TOKEN
