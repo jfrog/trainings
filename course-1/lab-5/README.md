@@ -73,7 +73,7 @@ Switch to the "Application" sidebar, and navigate to "Curation" -> "Policies Man
 1. Navigate to the [common NodeJS module](../../common/js).
 
     ```bash
-    docker build $JFROG_SAAS_DNS/<PROJECT_KEY>-docker/my-js-demo:1.0.0
+    docker build -t $JFROG_SAAS_DNS/key-docker/my-js-demo:1.0.0 .    
     ```
 
 2. Confgure the docker client and push the image
