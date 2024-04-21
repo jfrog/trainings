@@ -8,12 +8,12 @@ Practice manipulating JFrog BOMs
 
 in your JFrog Project, create the following repositories :
 
-Repo type | Repo key | Package type | Environment | Comment
----|---|--- |--- |---
-LOCAL | <PROJECT_KEY>-maven-rc-local | MAVEN | DEV |
-LOCAL | <PROJECT_KEY>-maven-release-local | MAVEN | PROD |
-REMOTE | <PROJECT_KEY>-mavencentral-remote | MAVEN | DEV |
-VIRTUAL | <PROJECT_KEY>-maven | MAVEN | DEV | include the 3 repos above and set default deployement to  <PROJECT_KEY>-maven-rc-local
+| Repo type | Repo key                          | Package type | Environment | Comment                                                                               |
+| --------- | --------------------------------- | ------------ | ----------- | ------------------------------------------------------------------------------------- |
+| LOCAL     | <PROJECT_KEY>-maven-rc-local      | MAVEN        | DEV         |
+| LOCAL     | <PROJECT_KEY>-maven-release-local | MAVEN        | PROD        |
+| REMOTE    | <PROJECT_KEY>-mavencentral-remote | MAVEN        | DEV         |
+| VIRTUAL   | <PROJECT_KEY>-maven               | MAVEN        | DEV         | include the 3 repos above and set default deployement to <PROJECT_KEY>-maven-rc-local |
 
 ### Build Info (only from API)
 
@@ -25,7 +25,7 @@ VIRTUAL | <PROJECT_KEY>-maven | MAVEN | DEV | include the 3 repos above and set 
       ../../demos/basics-bom/bom-publish.sh <PROJECT_KEY>-maven <PROJECT_KEY>
    ```
 
-2. Go to the Build info section > select a version and navigate on teh different tabs
+2. Go to the Build info section > select a version and navigate on teh different tabs. [View Build Number Information](https://jfrog.com/help/r/jfrog-integrations-documentation/view-build-number-information)
 
 ### RBv2 (from UI)
 
@@ -33,5 +33,5 @@ VIRTUAL | <PROJECT_KEY>-maven | MAVEN | DEV | include the 3 repos above and set 
 
 1. Generate a Release Bundle V2 from your Build Info
 2. Promote your Release Bundle V2 to the PROD environment
-3. Add an ``ÀRCHIVE`` project environment and assign it to <PROJECT_KEY>-archive-maven-local
-4. Promote your Release Bundle V2 to the ``ÀRCHIVE`` environment
+3. Add an `ÀRCHIVE` project environment and assign it to <PROJECT_KEY>-archive-maven-local
+4. Promote your Release Bundle V2 to the `ÀRCHIVE` environment
