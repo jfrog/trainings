@@ -29,7 +29,7 @@ curl \
    -X POST \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
-   -d @"payload/pt-api-def-latest.json" \
+   -d "@payload/pt-api-def-latest.json" \
 $JFROG_SAAS_URL/access/api/v2/permissions/
 ```
 
@@ -42,7 +42,7 @@ JFrog CLI:
 jf rt ptt pt-cli-template.json
 
 # apply 1 permission target definition
-jf rt ptc --vars pt-cli-template.json
+jf rt ptc --vars pt-name=test-permission pt-cli-template.json
 ```
 
 ## Tokens

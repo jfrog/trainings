@@ -19,7 +19,7 @@ VIRTUAL | green-maven  | DEV | include the 3 repos above and set default deploye
 2. Create build configuration:
 
    ```bash
-   export JFROG_CLI_BUILD_NAME green-app  JFROG_CLI_BUILD_NUMBER 1
+   export JFROG_CLI_BUILD_NAME=green-app JFROG_CLI_BUILD_NUMBER=1
    
    jf mvnc \
       --repo-deploy-releases green-maven \
@@ -48,6 +48,7 @@ Show the existing Release Bundle repository on the UI
 * Release Bundle Name: `green-release`
 * Release Bundle Version: `1.0`
 * Signing Key: `main`
+* Ensure that "Include dependencies" is *not* selected
 
 Click "Next", then "Create".
 

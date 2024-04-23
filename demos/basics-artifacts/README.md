@@ -4,7 +4,7 @@
 
 Repo type | Repo key | Environment | Comment
 ---|---|---|---
-LOCAL | green-generic-test-local | DEV |
+LOCAL | green-generic-dev-local | DEV |
 
 ## Upload via the REST API
 
@@ -13,7 +13,7 @@ LOCAL | green-generic-test-local | DEV |
       -X PUT \
       -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
       -d "@test.txt" \
-   $JFROG_SAAS_URL/artifactory/green-generic-test-local/test.txt
+   $JFROG_SAAS_URL/artifactory/green-generic-dev-local/test.txt
 ```
 
 ## Download via the REST API
@@ -21,19 +21,19 @@ LOCAL | green-generic-test-local | DEV |
 ```bash
    curl \
       -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-   $JFROG_SAAS_URL/artifactory/green-generic-test-local/test.txt
+   $JFROG_SAAS_URL/artifactory/green-generic-dev-local/test.txt
 ```
 
 ## Upload via the JFrog CLI
 
 ```bash
-   jf rt upload "*.txt" green-generic-test-local/cli-tests/
+   jf rt upload "*.txt" green-generic-dev-local/cli-tests/
 ```
 
 ## Download via the JFrog CLI
 
 ```bash
-   jf rt download green-generic-test-local/cli-tests/ .
+   jf rt download green-generic-dev-local/cli-tests/ .
 ```
 
 ## Apply properties via the UI
@@ -50,11 +50,11 @@ LOCAL | green-generic-test-local | DEV |
    curl \
       -X PUT \
       -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-   "$JFROG_SAAS_URL/artifactory/api/storage/green-generic-test-local/test.txt?properties=os=win,linux;qa=done"
+   "$JFROG_SAAS_URL/artifactory/api/storage/green-generic-dev-local/test.txt?properties=os=win,linux;qa=done"
 ```
 
 ## Apply properties via the JFrog CLI
 
 ```bash
-   jf rt sp "runtime.deploy.datetime=20240219_08000;runtime.deploy.account=robot_sa" green-generic-test-local/cli-tests/test.txt .
+   jf rt sp green-generic-dev-local/cli-tests/test.txt "runtime.deploy.datetime=20240219_08000;runtime.deploy.account=robot_sa"
 ```
