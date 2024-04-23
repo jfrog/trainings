@@ -16,3 +16,5 @@ build.yaml
 docker.yaml
 *.pem
 log-rest.log
+
+common/java/.jfrog
