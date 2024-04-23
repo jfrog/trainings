@@ -11,6 +11,9 @@ variable "artifactory_url" {
   type = string
 }
 
+variable "artifactory_local_maven_repository" {
+  type = string
+}
 
 # Configure the Artifactory provider
 provider "artifactory" {
@@ -19,6 +22,6 @@ provider "artifactory" {
 
 # Create a new repository
 resource "artifactory_local_maven_repository" "maven_repository" {
-  key             = "orange-maven-release-local"
+  key             = var.artifactory_local_maven_repository
   description     = "Maven repository created through Terraform"
 }
