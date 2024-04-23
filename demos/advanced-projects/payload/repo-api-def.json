@@ -1,6 +1,6 @@
 {
-  "key": "dimanche-maven-archive-local",
+  "key": "blueteam-maven-archive-local",
   "rclass": "local",
   "packageType": "maven",
-  "projectKey" : "dimanche"
+  "projectKey" : "blueteam"
 }
