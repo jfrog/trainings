@@ -27,6 +27,7 @@ curl \
    -d @"payload/policy-api-def.json" \
 $JFROG_SAAS_URL/xray/api/v2/policies
 
+##TO FIX:  This watch target "any repo" which does not calculate, we need to target specific docker repository are ask JFROG to fix the bug
 curl \
    -XPOST \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
@@ -37,7 +38,7 @@ $JFROG_SAAS_URL/xray/api/v2/watches
 
 ## UI : Scan artifacts
 
-Upload docker image (to be reused for JAS)
+Upload docker image (to be reused for JAS) - a Dockerfile is found within the common/js
 Show block download on dependencies
 
 ## UI : View scan results
