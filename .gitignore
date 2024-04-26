@@ -17,4 +17,4 @@ docker.yaml
 *.pem
 log-rest.log
 
-common/java/.jfrog
+common/**/.jfrog
