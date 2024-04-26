@@ -41,13 +41,13 @@ On the UI, go to  Xray > Indexed resources > Managed Builds
 
    # add complementary info to the Build Info
    # git hash, git branch
-   jf bag 
+   jf rt bag 
 
    # environment variables
-   jf bce
+   jf rt bce
    
    # publish Application Build Info
-   jf bp 
+   jf rt bp 
 
    echo "*****************************"
    echo "**** CONTAINERIZE APP"  
@@ -65,10 +65,10 @@ On the UI, go to  Xray > Indexed resources > Managed Builds
       --build-number=${JFROG_CLI_BUILD_NUMBER}
 
    # add application as a dependeny of the Container Build Info
-   jf bad "./target/*.war" "${JFROG_CLI_BUILD_NAME}-container" ${JFROG_CLI_BUILD_NUMBER}
+   jf rt bad "./target/*.war" "${JFROG_CLI_BUILD_NAME}-container" ${JFROG_CLI_BUILD_NUMBER}
 
    # publish Container Build Info
-   jf bp "${JFROG_CLI_BUILD_NAME}-container" ${JFROG_CLI_BUILD_NUMBER}
+   jf rt bp "${JFROG_CLI_BUILD_NAME}-container" ${JFROG_CLI_BUILD_NUMBER}
 
 ```
 
