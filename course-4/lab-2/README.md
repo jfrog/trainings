@@ -12,6 +12,7 @@ REMOTE | mavencentral-remote | DEV | enable Xray
 VIRTUAL | <PROJECT_KEY>-maven  | DEV | include the above repo
 REMOTE | npmjs-remote | DEV | enable Xray
 VIRTUAL | <PROJECT_KEY>-npm  | DEV | include the above repo
+LOCAL | green-docker-local  | DEV | 
 
 ## Index Artifactory resources via UI
 
@@ -53,13 +54,13 @@ curl \
    -XPOST \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
-   -d @"../../demos/basics-security-xray/payload/watch-api-def.json" \
+   -d @"../../demos/basics-security-xray/payload/watch-api-def-docker.json" \
 $JFROG_SAAS_URL/xray/api/v2/watches
 ```
 
 ## Scan artifacts
 
-1. Upload a docker image to the docker repository
+1. Upload a docker image to the docker repository(you can build Dockerfile under /common/js)
 2. Enable block download on dependencies
 
 ## View scan results on the UI
