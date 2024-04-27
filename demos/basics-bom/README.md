@@ -47,7 +47,7 @@ Show the existing Release Bundle repository on the UI
 
 * Release Bundle Name: `green-release`
 * Release Bundle Version: `1.0`
-* Signing Key: `main`
+* Signing Key: `MYKEY - GPG`
 * Ensure that "Include dependencies" is *not* selected
 
 Click "Next", then "Create".
