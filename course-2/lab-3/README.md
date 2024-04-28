@@ -35,7 +35,7 @@ Practice manipulating JFrog BOMs
 4. Push the build info to Artifactory:
 
    ```bash
-   jf rt bp
+   jf rt bce && jf rt bag && jf rt bp
    ```
 
 Then, navigate to "Artifactory" -> "Builds", and show ```<PROJECT_KEY>-app``` and its build (```1```).
