@@ -26,7 +26,7 @@
 
 ## Test the curation process
 
-1. Ensure that your machine doesn't have Log4J cached, delete the entire `~/.m2/repositoryorg/apache/logging` directory tree, if it exists.
+1. Ensure that your machine doesn't have Log4J cached, delete the entire `~/.m2/repository/org/apache/logging/log4j` directory tree, if it exists.
 2. On your own machine, using a command prompt, navigate to the [common Java module](../../common/java).       Configure your Maven client to download packages from your remote
     1. Artifactory > virtual repositories > <PROJECT_KEY>-maven
     2. Click on  `Setup Client` & follow the instruction
