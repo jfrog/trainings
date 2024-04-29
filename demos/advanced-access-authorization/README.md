@@ -38,8 +38,6 @@ JFrog CLI:
 > relies on [```artifactory/api/v2/security/permissions```](https://jfrog.com/help/r/jfrog-rest-apis/create-permission-target)
 
 ```bash
-# generate 1 permission target definition and store it into permissions.json
-jf rt ptt pt-cli-template.json
 
 # apply 1 permission target definition
 jf rt ptc --vars pt-name=test-permission pt-cli-template.json

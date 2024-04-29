@@ -84,7 +84,7 @@ Assign the following properties to a file
 by executing the following command (don't forget to update the repository key)
 
 ```bash
-jf rt sp "runtime.deploy.datetime=20240219_08000;runtime.deploy.account=robot_sa" <USERNAME>-test-generic-local/cli-tests/test2.txt .
+jf rt sp "username-generic-test-local/cli-tests/test.txt" "runtime.deploy.datetime=20240219_08000;runtime.deploy.account=robot_sa"
 ```
 
 ## Search for artifacts with Artifactory Query Language (AQL)

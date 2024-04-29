@@ -26,7 +26,8 @@ VIRTUAL | green-maven  | DEV | include the 3 repos above and set default deploye
       --repo-deploy-snapshots green-maven \
       --repo-resolve-releases green-maven \
       --repo-resolve-snapshots green-maven
-   
+
+// export JFROG_CLI_BUILD_PROJECT=${MY_PROJ_KEY}
    jf mvn clean package deploy 
 
    jf rt bce && jf rt bag && jf rt bp
@@ -47,7 +48,7 @@ Show the existing Release Bundle repository on the UI
 
 * Release Bundle Name: `green-release`
 * Release Bundle Version: `1.0`
-* Signing Key: `main`
+* Signing Key: `MYKEY - GPG`
 * Ensure that "Include dependencies" is *not* selected
 
 Click "Next", then "Create".
