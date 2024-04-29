@@ -30,7 +30,7 @@
 2. On your own machine, using a command prompt, navigate to the [common Java module](../../common/java).       Configure your Maven client to download packages from your remote
     1. Artifactory > virtual repositories > <PROJECT_KEY>-maven
     2. Click on  `Setup Client` & follow the instruction
-3. Run a **maven install**
+3. Run a **mvn install**
 4. Run ```jf curation-audit```
 
 ### Block download
