@@ -1,6 +1,6 @@
 {
   "release_bundle_name": "rbv2_from_builds",
-  "release_bundle_version": "1.0.0",
+  "release_bundle_version": "1.0.1",
   "skip_docker_manifest_resolution": true,
   "source_type": "builds",
   "source": {

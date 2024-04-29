@@ -5,12 +5,13 @@ if [ ! -z "$non_interactive" ]; then
     # Your code for non-interactive mode goes here
     echo "Non-interactive mode is enabled."
     #Global vars
-    USERNAMENAME=${USERNAMENAME:=pstrainenv}
+    USERNAME=${USERNAME:=pstrainenv}
     PASSWORD=${PASSWORD:=Admin1234!}
 else
     # Your code for interactive mode goes here
     echo "Interactive mode is enabled."
 fi
+
 
 
 # Use to disable interactive mode of the jfrog cli
@@ -35,11 +36,12 @@ server_ping(){
   fi
 }
 
-
 # Function to create a new scopped token
 create_token() {
     echo -e "Generate Access Token for ${1}"
+    curl -s -u ${USERNAME}:${PASSWORD} -XPOST "${1}/access/api/v1/tokens"
     JFROG_ACCESS_TOKEN=$(curl -s -u ${USERNAME}:${PASSWORD} -XPOST "${1}/access/api/v1/tokens" | jq -r '.access_token')
+    echo $JFROG_ACCESS_TOKEN
 }
 
 
@@ -89,3 +91,6 @@ EOF
     echo $USERNAME
     curl -X POST -H "Content-Type: application/json; charset=UTF-8" -H "Authorization: Bearer ${TOKEN}" -d "$json_data" "${baseUrl}/access/api/v1/projects"
 }
+
+
+

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # param 1 : programming language
 # param 2 : virtual repo for resolution
@@ -10,8 +10,8 @@ language=java
 download_repo="green-maven"
 upload_repo="green-maven"
 oci_repo="green-oci"
-jpd="yann-demo.dev.gcp.jfps.team"
-container_cmd="nerdctl"
+jpd=${6}
+container_cmd="docker"
 
 which jf >/dev/null 2>&1
 if [ $? -ne 0 ]; then
@@ -73,24 +73,30 @@ if [[ $language == "java" ]]; then
     cp target/demo*.jar .
 
 else
-    jf npmc --repo-resolve $download_repo 
+    jf npmc --repo-resolve $download_repo --project $5
 
     # generate BOM during the maven build and deploy
-    jf npm ci  --module my-app
+    jf npm ci  --module my-app --project $5
 
     tar -czf app.tar.gz --exclude Dockerfile --exclude "*tar.gz" .
 
-    jf rt u app.tar.gz $upload_repo --module my-app
+    jf rt u app.tar.gz $upload_repo --module my-app --project $5
 fi
 
 # collect env var + git info + publish BOM to Artifactory
-jf rt bce &&  jf rt bp
+jf rt bce --project $5 &&  jf rt bp --project $5
 
+
+echo "***************************************************"
+echo "REGISTRY: $jpd"
+echo "DOCKER_REPO: $oci_repo"
+echo "***************************************************"
 
 eval $container_cmd  build  \
     --build-arg REGISTRY=$jpd \
-    --build-arg DOCKER_REPO=$oci_repo \
+    --build-arg DOCKER_REPO=$oci_repo\
     -t $jpd/$oci_repo/$language-demo:0.1.0 .
+
 eval $container_cmd push $jpd/$oci_repo/$language-demo:0.1.0
 
 popd

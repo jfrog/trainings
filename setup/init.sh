@@ -2,15 +2,18 @@
 
 #Global vars
 JPD_URL="https://${1}.jfrog.io"
+EDGE_URL="https://${1}edge.jfrog.io"
 JFROG_ACCESS_TOKEN=${2}
-saas_id=$1
+#export is needed for envsubt
+export saas_id=$1
 
 #Init config
 repo_init=true
 project_init=true
 data_init=true
-xray_init=true 
-xray_force_scan=true
+xray_init=false 
+xray_force_scan=false
+
 
 if [[ -z $JFROG_ACCESS_TOKEN ]]; then
     echo "[ERROR] export the JFROG_ACCESS_TOKEN in your session. this script requires a Platform Admin Access Token"
@@ -24,12 +27,30 @@ fi
 
 project=green
 
+
+function upload_signing_key_pair() {
+  echo "🟢" "Uploading signing key-pair: $1"
+  echo "echo $1 | tr [:lower:] [:upper:]"
+  local key_pair_name="$(echo $1 | tr '[:lower:]' '[:upper:]')"
+  pwd
+  local public_key=$(cat "rbv2/resources/keys/$1/public.key")
+  local private_key=$(cat "rbv2/resources/keys/$1/private.key")
+  echo $private_key
+  echo "$3"
+  curl -u "pstrainenv:Admin1234!" -XPOST "$3/artifactory/api/security/keypair" \
+     --header "Content-Type: application/json" \
+     --data-raw "{
+         \"pairName\": \"$key_pair_name\",
+         \"pairType\": \"$2\",
+         \"alias\": \"$1\",
+         \"publicKey\": \"$public_key\",
+         \"privateKey\": \"$private_key\"
+     }"
+}
+
 # #####################################################################################
 # REPOSITORY CREATION
 #######################################################################################
-
-
-jf c s $saas_id
 
 if [[ $repo_init == true ]]; then
     
@@ -85,7 +106,7 @@ if [[ $project_init == true ]]; then
         echo $repo_key
         curl \
             -XPUT \
-            -H "Authorization: Bearer $JFROG_ACCESS_TOKEN"  \
+            -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
         ${JPD_URL}/access/api/v1/projects/_/attach/repositories/${repo_key}/${project}
     done
 
@@ -103,36 +124,46 @@ fi
 
 if [[ $data_init == true ]]; then
 
-    ./bom-publish.sh java green-maven green-maven green-oci green
-    ./bom-publish.sh js green-npm green-generic green-oci green
+    ./bom-publish.sh java green-maven green-maven green-oci green $(basename $JPD_URL)
+    ./bom-publish.sh js green-npm green-generic green-oci green $(basename $JPD_URL)
 
     # can be run even before pushing the build info => the build name will be recorded even if it does NOT exist yet
-    jf xr curl \
-        -XPOST \
-        -H "Content-Type: application/json" \
-        --data '{"names": ["green-java-app","green-js-app"]}' \
-    "api/v1/binMgr/builds?projectKey=green" --server-id $saas_id
+
+    #jf xr curl \
+    #    -XPOST \
+    #    -u pstrainenv:Admin1234! \
+    #    -H "Content-Type: application/json" \
+    #    --data '{"names": ["green-java-app","green-js-app"]}' \
+    #    "api/v1/binMgr/builds?projectKey=green" --server-id $saas_id
 
     #------------------
     # RBv2
     #------------------
 
-    # upload keypair
-    jf rt curl \
-        -XPOST \
-        -H "Content-Type: application/json" \
-        -d@./rbv2/gpg_payload_demo.json \
-    api/security/keypair --server-id $saas_id
+
+    upload_signing_key_pair "gpg_key" "GPG" "$JPD_URL"
+    upload_signing_key_pair "gpg_key" "GPG" "$EDGE_URL"
 
 
     curl \
-        -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+        -u pstrainenv:Admin1234! \
         -XPOST \
         -H "Content-Type: application/json" \
-        -H "X-JFrog-Signing-Key-Name: rbv2_demo" \
+        -H "X-JFrog-Signing-Key-Name: test_gpg" \
         -d @"./rbv2/payload/rb_from_aql_oci.json" \
     "$JPD_URL/lifecycle/api/v2/release_bundle?project=green" 
 
+    curl \
+        -u pstrainenv:Admin1234! \
+        -XPOST \
+        -H "Content-Type: application/json" \
+        -H "X-JFrog-Signing-Key-Name: test_gpg" \
+        -d @"./rbv2/payload/rb_from_builds.json" \
+    "$JPD_URL/lifecycle/api/v2/release_bundle?project=green"     
+
+      
+
+    echo "done"
 #------------------
 # Indexing
 #------------------
@@ -140,11 +171,12 @@ if [[ $data_init == true ]]; then
     #     --data '{"names": ["rbv2_from_builds","rbv2_from_aql","rbv2_from_artifacts"]}' \
 
     # can be run before creating the RBv2 BUT it will only work if the RBv2 exists
-    jf xr curl \
-        -XPOST \
-        -H "Content-Type: application/json" \
-        --data '{"names": ["rbv2_from_aql"]}' \
-    "api/v1/binMgr/release_bundle_v2?project_key=green" --server-id $saas_id
+    #jf xr curl \
+    #    -XPOST \
+    #    -u pstrainenv:Admin1234! \
+    #    -H "Content-Type: application/json" \
+    #    --data '{"names": ["rbv2_from_aql"]}' \
+    #    "api/v1/binMgr/release_bundle_v2?project_key=green" --server-id $saas_id
 
 fi
 
@@ -190,6 +222,7 @@ if [[ $xray_init == true ]]; then
         -d @"xray/watches/watch-api-ci.json" \
     "api/v2/watches?projectKey=green" --server-id $saas_id
 
+
     ## add RBv2
     jf xr curl \
        -XPOST \
@@ -202,13 +235,17 @@ else
 fi 
 
 
+
 if [[ $xray_force_scan == true ]]; then
 
 ## force scan
-jf xr curl -XPOST \
-  -H "Accept: application/json" -H "Content-Type: application/json" \
-  -d '{"build_name": "green-js-app", "build_number": "1", "project":"green"}' \
-api/v2/ci/build --server-id $saas_id
+#jf xr curl -XPOST \
+#  -H "Accept: application/json" -H "Content-Type: application/json" \
+#  -d '{"build_name": "green-js-app", "build_number": "1", "project":"green"}' \
+#api/v2/ci/build --server-id $saas_id
+
+
+echo "done"
 
 else 
     echo "[XRAY-FORCE-SCAN] skipped"
@@ -220,19 +257,20 @@ fi
 # api/v1/scan/status/releaseBundleV2" --server-id $saas_id
 
 
-curl \
-    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-    -H "Content-Type: application/json" \
-    -XPOST \
-    -H "X-JFrog-Signing-Key-Name: rbv2_demo" \
-    -d '{"environment": "PROD", "excluded_repository_keys" : ["green-maven-prod-local", "green-docker-prod-local", "green-generic-prod-local"]}' \
-"$JPD_URL/lifecycle/api/v2/promotion/records/rbv2_from_aql/1.1.0?project=green" 
+#curl \
+#    -u pstrainenv:Admin1234! \
+#    -H "Content-Type: application/json" \
+#    -XPOST \
+#    -H "X-JFrog-Signing-Key-Name: rbv2_demo" \
+#    -d '{"environment": "PROD", "excluded_repository_keys" : ["green-maven-prod-local", "green-docker-prod-local", "green-generic-prod-local"]}' \
+#"$JPD_URL/lifecycle/api/v2/promotion/records/rbv2_from_aql/1.1.0?project=green" 
+
 
 
 # curl \
-#     -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+#     -u pstrainenv:Admin1234! \
 # "$JPD_URL/lifecycle/api/v2/release_bundle/statuses/rbv2_from_aql/1.1.0?project=green"
 
 # curl \
-#     -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+#     -u pstrainenv:Admin1234! \
 # "$JPD_URL/lifecycle/api/v2/promotion/statuses/rbv2_from_aql/1.1.0?project=green"

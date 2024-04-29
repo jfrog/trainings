@@ -14,6 +14,7 @@ export CI=true
 # If the file is found, the loop breaks and the script sources "lib.sh" using "source". Finally, it changes back to the original directory using "cd -"
 while [ ! -f "./lib.sh" ]; do cd ..; done; source lib.sh; cd $old_pwd > /dev/null
 
+
 #################################################################################################################################
 # Loop exec
 #################################################################################################################################
@@ -27,7 +28,7 @@ ReadCSV() {
 PerformValidation() {
    local csv_content=$(ReadCSV "$FILENAME")
    rm -f ping_issues
-   echo "$csv_content" | while IFS="," read -r mothership second_site edge
+   echo "$csv_content" | while IFS="," read -r mothership edge second_site ec2
    do
       echo "----------------------------------------------------------"
       echo "$mothership"
@@ -35,18 +36,18 @@ PerformValidation() {
       echo -e "$mothership : $(curl -s -u ${USERNAME}:${PASSWORD} -X GET https://${mothership}.jfrog.io/artifactory/api/system/ping || echo "Fail for ${mothership}" >> ping_issues)" 
       echo -e "$second_site : $(curl -s -u ${USERNAME}:${PASSWORD} -X GET https://${second_site}.jfrog.io/artifactory/api/system/ping || echo "Fail for ${second_site}" >> ping_issues)"
       echo -e "$edge : $(curl -s -u ${USERNAME}:${PASSWORD} -X GET https://${edge}.jfrog.io/artifactory/api/system/ping  || echo "Fail for ${edge}" >> ping_issues)"
-   done
+   done <<< "$csv_content"
 }
-
 
 # Function to perform the setup for JPD
 Setup_jpd() {
    local csv_content=$(ReadCSV "$FILENAME")
-   while IFS="," read -r mothership second_site edge ec2
+   while IFS="," read -r mothership edge second_site ec2
    do
       jf c add --url=https://${mothership}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false $mothership
       jf c add --url=https://${second_site}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false $second_site
       jf c add --url=https://${edge}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false $edge
+      jf c use $mothership
       server_url="https://${mothership}.jfrog.io"
       server_ping ${server_url}
       create_token ${server_url}
@@ -60,7 +61,7 @@ Setup_jpd() {
 
 Setup_ec2(){
    local csv_content=$(ReadCSV "$FILENAME")
-   while IFS="," read -r mothership second_site edge ec2
+   while IFS="," read -r mothership edge second_site ec2
    do
     vm=$(echo ${ec2} | awk '{print $NF}')
     echo "==============================="
@@ -68,12 +69,28 @@ Setup_ec2(){
     echo "==============================="
     echo "Uplate the following instance ${vm}"
     ls -all ${EC2_PEM_KEY}
+    echo -e "****************************"
+    echo -e "Add pem.key and ssh command"
+    echo -e "****************************"
+    #copy pemKey
+    curl -s -u "${USERNAME}:${PASSWORD}" -X PUT "https://${mothership}.jfrog.io/artifactory/api/repositories/ec2_pem_key" -H "Content-Type: application/json" -d '{"key":"ec2_pem_key","rclass":"local","packageType":"generic","xrayIndex":false}'
+    ls -all
+    ls -all ..
+    curl -s -u "${USERNAME}:${PASSWORD}" -X PUT "https://${mothership}.jfrog.io/artifactory/ec2_pem_key/${EC2_PEM_KEY}" -T ${EC2_PEM_KEY}
+   
+    echo "chmod 400 ${EC2_PEM_KEY}" > ssh_command.txt 
+    echo "ssh -i "${EC2_PEM_KEY}" ${ec2}" >> ssh_command.txt 
+    curl -s -u "${USERNAME}:${PASSWORD}" -X PUT "https://${mothership}.jfrog.io/artifactory/ec2_pem_key/ssh_command.txt" -T ssh_command.txt 
+    echo "**********************************************************"
+    cat ssh_command.txt 
+    echo "**********************************************************"
     echo "ssh -i "${EC2_PEM_KEY}" -o StrictHostKeyChecking=no ${vm}"
       ssh -i "${EC2_PEM_KEY}" -o StrictHostKeyChecking=no ${vm}  << EOF
-      sudo apt update -y
-      sudo apt install docker -y
-      sudo usermod -a -G docker ubuntu
-      newgrp docker
+      #curl -fsSL https://get.docker.com -o get-docker.sh | sh
+      #chmod +x get-docker.sh
+      #sudo ./get-docker.sh
+      #sudo usermod -a -G docker ubuntu
+      #newgrp docker
 
       echo "==============================="
       echo "remove and clone https://github.com/jfrog/trainings repository"
@@ -85,13 +102,13 @@ Setup_ec2(){
       echo "==============================="
       echo "Configure the instance to the following JPD ${mothership}"
       echo "==============================="
+      curl -s -fL https://install-cli.jfrog.io | sh
       echo "Cli version : $(jf --version)"
       jf c rm --quiet
       jf c add --url=https://${mothership}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false mothership
       jf c add --url=https://${second_site}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false second_site
       jf c add --url=https://${edge}.jfrog.io/ --user=${USERNAME}  --password=${PASSWORD} --interactive=false edge
       jf c use mothership
-      jf c s
       #echo "==============================="
       echo "verify versions"
       echo "==============================="
@@ -103,9 +120,9 @@ Setup_ec2(){
       echo "==============================="
       echo "Testing docker"
       echo "==============================="
-      #docker pull hello-world
-      #docker run hello-world
-      #docker images | grep ics
+      docker pull hello-world
+      docker run hello-world
+      docker images | grep ics
       echo "==============================="
       echo "Testing Terraform"
       echo "==============================="
@@ -113,7 +130,7 @@ Setup_ec2(){
       echo "==============================="
       echo "verify clone"
       echo "==============================="
-      ls SwampUp2023
+      ls trainings
 EOF
    done <<< "$csv_content"
 }
@@ -154,7 +171,7 @@ while [[ $# -gt 0 ]]; do
          PERFORM_TEST=1
          shift # past argument
          ;;
-      -s|--setup)
+      -sj|--setup)
          PERFORM_SETUP=1
          shift # past argument
          ;;

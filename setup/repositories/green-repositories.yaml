@@ -135,8 +135,8 @@ virtualRepositories:
       - green-maven-prod-local
       - mavencentral-remote
     defaultDeploymentRepo: green-maven-dev-local
-  green-oci:
-    type: oci
+  green-docker:
+    type: docker
     repoLayout: simple-default 
     repositories:   
       - green-docker-dev-local

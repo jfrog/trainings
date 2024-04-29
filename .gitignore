@@ -16,3 +16,10 @@ build.yaml
 docker.yaml
 *.pem
 log-rest.log
+app.tar.gz
+npm.yaml
+maven.yaml
+ssh_command.txt
+setup/common/*
+setup/common/java/.jfrog/projects/maven.yaml
+setup/common/js/app.tar.gz
