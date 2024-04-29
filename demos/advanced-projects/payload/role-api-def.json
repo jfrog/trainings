@@ -2,6 +2,6 @@
     "name" : "Security Champion",
     "description" : "custom role created by automation",
     "type" : "CUSTOM_GLOBAL",
-    "environments" : [ "DEV", "RELEASE", "PROD" ],
+    "environments" : [ "DEV", "RELEASE-CANDIDATE", "PROD" ],
     "actions" : [ "READ_REPOSITORY", "READ_RELEASE_BUNDLE", "READ_BUILD", "READ_SOURCES_PIPELINE", "READ_INTEGRATIONS_PIPELINE", "READ_POOLS_PIPELINE", "REPORTS_SECURITY", "WATCHES_SECURITY", "RULES_SECURITY", "READ_POLICIES_SECURITY" ]
   }

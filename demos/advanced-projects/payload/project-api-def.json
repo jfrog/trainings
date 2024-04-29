@@ -8,9 +8,8 @@
       "index_resources": false,
       "allow_ignore_rules": false
     },
-    "storage_quota_bytes": 1,
+    "storage_quota_bytes": 1073741824,
     "soft_limit": false,
     "storage_quota_email_notification": true,
     "project_key": "blueteam"
 }
-  
