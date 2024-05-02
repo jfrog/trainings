@@ -1,0 +1,33 @@
+{
+    "general_data": {
+        "name": "blueteam-apps",
+        "description": "This is a new watch created using API V2",
+        "active": true
+    },
+    "project_resources": {
+        "resources": [
+            {
+                "type": "repository",
+                "name": "green-docker-local",
+                "bin_mgr_id": "default",
+                "repo_type": "local"
+            }
+        ]
+    },
+    "assigned_policies": [
+        {
+            "name": "global_sec",
+            "type": "security"
+        }
+    ],
+    "ticket_generation": {
+        "create_duplicate_tickets": {
+            "by_version": {
+                "build": false,
+                "package": false,
+                "release_bundle": false
+            }
+        },
+        "impact_path_profiles_mapping": {}
+    }
+}

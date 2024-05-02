@@ -1,6 +1,6 @@
 # Demo: Repository creation automation
 
-**NOTE**: The [JSON structure for the REST API](https://jfrog.com/help/r/jfrog-rest-apis/repository-configuration-json) may not be  identical to the structure consumed by the CLI.
+**NOTE**: The [JSON structure for the REST API](https://jfrog.com/help/r/jfrog-rest-apis/repository-configuration-json) may not be identical to the structure consumed by the CLI.
 
 ## Pre requisites
 
@@ -15,7 +15,7 @@ curl \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
    -d "@payload/repo-api-def.json" \
-$JFROG_SAAS_URL/artifactory/api/repositories/blueteam-maven-archive-local
+$JFROG_SAAS_URL/artifactory/api/repositories/blueteam-maven-dev-local
 ```
 
 ## Using the JFrog CLI
@@ -34,10 +34,12 @@ $JFROG_SAAS_URL/artifactory/api/repositories/blueteam-maven-archive-local
 Example of using variables in the repo config templates
 
 ```bash
-   for maturity in `rc release prod`; do jf rt rc --vars "team=blueteam;pkgType=npm;maturity=$maturity;" repo-cli-template-example.json ; done
+   for maturity in rc release prod; do jf rt rc --vars "team=blueteam;pkgType=npm;maturity=$maturity;" repo-cli-template.json ; done
 ```
 
 ### PATCH config
+
+(Turns on Xray)
 
 ```bash
 # don't use -d option to specify the YAML file
@@ -54,9 +56,8 @@ jf rt curl \
 An example Terraform module is provided: [repository-create.tf](repository-create.tf).
 Create ```my.tfvars``` and assign the following variables :
 
-+ artifactory_url
-+ artifactory_access_token
-+ artifactory_local_maven_repository
++ `artifactory_url`
++ `artifactory_local_maven_repository`
 
 **More info on the [JFrog official doc](https://registry.terraform.io/providers/jfrog/artifactory/latest/docs)**
 
