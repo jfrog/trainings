@@ -95,7 +95,7 @@ curl \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
    -d @"../basics-security-xray/payload/policy-api-def.json" \
-$JFROG_SAAS_URL/xray/api/v2/policies
+"$JFROG_SAAS_URL/xray/api/v2/policies?projectKey=blueteam"
 
 # add a query param "?projectKey=<PROJECT_KEY>" to create a project watch
 curl \
@@ -103,7 +103,7 @@ curl \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
    -d @"../basics-security-xray/payload/watch-api-def.json" \
-$JFROG_SAAS_URL/xray/api/v2/watches
+"$JFROG_SAAS_URL/xray/api/v2/watches?projectKey=blueteam"
 ```
 
 ## Switch to JFrog Projects
