@@ -48,7 +48,7 @@ curl \
    -XPUT \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
-"$JFROG_SAAS_URL/access/api/v1/projects/_/attach/repositories/<REPO_KEY>/<PROJECT_KEY>?force=true"
+"$JFROG_SAAS_URL/access/api/v1/projects/_/attach/repositories/<REPO_KEY>/blueteam?force=true"
 ```
 
 ## Publish JFrog BOMs to Project
