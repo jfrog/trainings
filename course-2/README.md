@@ -6,10 +6,10 @@
 2. [Repository structure](../demos/advanced-repositories/README.md)
 3. JFrog BOMs
     + [Basics](../demos/basics-bom/README.md)
-    + [Advanced](../demos/advanced-bom/README.md)
+    + [Advanced](../demos/advanced-bom/README.md) NOT READY
 4. JFrog Projects
     + [Basics](../demos/basics-projects/README.md)
-    + [Advanced](../demos/advanced-projects/README.md)
+    + [Advanced](../demos/advanced-projects/README.md) BOM part NOT READY
 
 ## Labs
 
