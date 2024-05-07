@@ -2,17 +2,7 @@
 
 ## Pre requisites
 
-1. 1 JFrog project with a project key = **green**
-2. the following repositories assigned to the JFrog Project
-
-    Repo type | Repo key | Environment | Comment
-    ---|---|--- |---
-    LOCAL | green-maven-dev-local | DEV |
-    LOCAL | green-maven-rc-local | DEV |
-    LOCAL | green-maven-release-local | PROD |
-    LOCAL | green-maven-prod-local | PROD |
-    REMOTE | mavencentral-remote | DEV |
-    VIRTUAL | green-maven  | DEV | include the 3 repos above and set default deployement to  green-rc-maven-local
+1. Create 'developers' group
 
 ## Permission Targets
 
