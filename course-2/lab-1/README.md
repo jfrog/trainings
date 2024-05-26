@@ -52,7 +52,7 @@ LOCAL | [USERNAME]-generic-test-local | GENERIC | DEV |
 3. Download the content of a folder from the repository into your local machine:
 
    ```bash
-   jf rt download <USERNAME>-test-generic-local/cli-tests/ .
+   jf rt download <USERNAME>-generic-test-local/cli-tests/ .
    ```
 
 ## Apply properties via the UI
@@ -71,7 +71,7 @@ Assign the following properties to a file
    curl \
       -X PUT \
       -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-   "$JFROG_SAAS_URL/artifactory/api/storage/<USERNAME>-test-generic-local/monday.txt?properties=os=win,linux;qa=done"
+   "$JFROG_SAAS_URL/artifactory/api/storage/<USERNAME>-generic-test-local/monday.txt?properties=os=win,linux;qa=done"
 ```
 
 ## [OPTIONAL] Apply properties via the JFrog CLI
