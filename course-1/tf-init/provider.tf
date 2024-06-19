@@ -1,6 +1,7 @@
-## Please set the following environment variables before executing terraform code
-#### JFROG_URL
-#### JFROG_ACCESS_TOKEN
+## Please set the following values within secret.auto.tfvars
+#### main_url, edge_url
+#### main_access_token, edge_access_token
+
 
 terraform {
   required_providers {
@@ -13,11 +14,11 @@ terraform {
 
 # Configure the Artifactory provider
 provider "artifactory" {
-    url = "https://train17187377940.jfrog.io"
+    url = var.main_url
     access_token = var.main_access_token
 }
 provider "artifactory" {
     alias = "edge"
-    url = "https://train17187377940edge.jfrog.io"
+    url = var.edge_url
     access_token = var.edge_access_token
 }
