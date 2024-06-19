@@ -14,7 +14,7 @@ via the UI:
 2. Create a JFrog Project with ```<YOUR NAME>_``` as prefix
 3. Onboard the user ```<YOUR NAME>_sunday``` as a Project Admin
 
-## As the Project admin (<YOUR NAME>_sunday)
+## As the Project admin (```<YOUR NAME>_sunday```)
 
 1. Create a generic repository and assign the ```DEV``` environment
 2. Onboard the user ```<YOUR NAME>_monday``` as a Project Admin and grant the role ```Developer```
