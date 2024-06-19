@@ -5,7 +5,7 @@
 **/.terraform.*
 terraform.tfstate*
 .npmrc
-**/node_modules/
+**/node_modules**/
 *.tgz
 demos/old*
 labs
@@ -17,4 +17,5 @@ docker.yaml
 *.pem
 log-rest.log
 
-common/**/.jfrog
+common/**/.jfrog**
+.DS_Store
