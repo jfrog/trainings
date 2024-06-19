@@ -4,12 +4,13 @@
 **/.terraform/**
 **/.terraform.*
 terraform.tfstate*
+**/secrets.auto.tfvars
+
 .npmrc
 **/node_modules**/
 *.tgz
 demos/old*
 labs
-*.tfvars
 instance_list.csv
 .config
 build.yaml
