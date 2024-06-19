@@ -85,7 +85,7 @@ Use the following command to run an AQL query via the JFrog CLI and make sure to
 
 ```bash
 # using the JFrog CLI
-jf rt search --spec="../../demos/basics-search/query-aql-cli.json"
+jf rt search --spec="query-aql-cli.json"
 ```
 
 #### GraphQL
