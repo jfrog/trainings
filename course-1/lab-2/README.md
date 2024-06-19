@@ -17,7 +17,7 @@ via the UI:
 ## As the Project admin (```<YOUR NAME>_sunday```)
 
 1. Create a generic repository and assign the ```DEV``` environment
-2. Onboard the user ```<YOUR NAME>_monday``` as a Project Admin and grant the role ```Developer```
+2. Onboard the user ```<YOUR NAME>_monday``` as a member and grant the role ```Developer```
 
 ## As the Project user (monday)
 
