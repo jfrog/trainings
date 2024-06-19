@@ -95,8 +95,8 @@ jf rt search --spec="query-aql-cli.json"
 ##### GraphiQL
 
 1. In your browser, go to  `$JFROG_SAAS_URL/metadata/api/v1/query/graphiql` and specify your access token
-2. Extract the GraphQL query from the JSON file  '{"query" : "<QUERY_TO_EXTRACT>"}  from `../../demos/basics-search/query-graphql.json`
-3. Paste it in the query editor and execute it
+2. Paste the query editor and execute it `query {packages(filter: {properties: [{name:"build.name", value:"green-java-app"},{name:"build.number", value:"1"}]},){edges {node {id name versions { name vulnerabilities { critical high }}}}}}`
+
 
 ##### OPTIONAL : Using the REST API
 
@@ -107,7 +107,8 @@ Use the following command to run an AQL query and make sure to update the AQL qu
 # we have to use curl
 curl \
     -XPOST \
+    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
-    -d "@../../demos/basics-search/query-graphql.json" \
+    -d "@query-graphql.json" \
 $JFROG_SAAS_URL/metadata/api/v1/query 
 ```
