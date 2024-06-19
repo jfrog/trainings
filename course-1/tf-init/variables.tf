@@ -1,7 +1,13 @@
-variable "users" {
-  description = "A map of user names to emails, to be created on all artifactory instances"
-  type        = map(string)
+variable "user_count" {
+  description = "The number of users to create"
+  type        = number
+  default     = 3
 }
+
+# variable "users" {
+#   description = "A map of user names to emails, to be created on all artifactory instances"
+#   type        = map(string)
+# }
 
 variable "user_password" {
     type = string
