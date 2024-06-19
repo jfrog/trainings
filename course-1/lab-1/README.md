@@ -71,10 +71,8 @@ Via an AQL query, look for artifacts tagged with the following properties:
 Use the following command to run an AQL query and make sure to update the AQL query accordingly.
 
 ```bash
-# we supposed we are in jfrog-training/course-1/lab-1 folder
-
 # using the API
-jf rt curl -XPOST -H "Content-type: text/plain" api/search/aql -d"@../../demos/basics-search/query-aql-properties-rest.txt"
+jf rt curl -XPOST -H "Content-type: text/plain" api/search/aql -d"@query-aql-properties-rest.txt"
 ```
 
 ##### OPTIONAL : Using the JFrog CLI with Filespecs
