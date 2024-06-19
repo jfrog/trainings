@@ -1,6 +1,12 @@
 variable "users" {
-  description = "A map of user names to emails"
+  description = "A map of user names to emails, to be created on all artifactory instances"
   type        = map(string)
+}
+
+variable "user_password" {
+    type = string
+    description = "User password to login artifactory"
+    sensitive = true
 }
 
 variable "main_url" {
