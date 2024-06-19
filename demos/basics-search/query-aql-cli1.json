@@ -1,0 +1,13 @@
+{
+  "files": [
+    {
+      "aql": {
+        "items.find": {
+          "repo": "yoni-test-generic-local",
+          "@app.name": "snake",
+          "@app.version": "1.0.0"
+        }
+      }
+    }
+  ]
+}

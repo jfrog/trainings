@@ -31,7 +31,7 @@ Name it `<USERNAME>-test-maven-target-remote`
 
 ### Pull replication
 
-1. Go in the Replication Properties of `<USERNAME>-test-maven-src-remote` repository (Artifactory > Repositories > local > `Your repository` > Replications)
+1. Go in the Replication Properties of `<USERNAME>-test-maven-src-remote` repository (Artifactory > Repositories > remote > <USERNAME>-test-maven-target-remote)
 2. Change the URL with the artifactory url of `<USERNAME>-test-maven-src-local` (use the URL to file) fill `User Name` and `Password`
 3. Press Test
 4. Go on the `Replication` tab
