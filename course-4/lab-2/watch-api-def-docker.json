@@ -1,0 +1,23 @@
+{
+    "general_data": {
+        "name": "<UPDATE>",
+        "description": "This is a new watch created using API V2",
+        "active": true
+    },
+    "project_resources": {
+        "resources": [
+            {
+                "type": "repository",
+                "name": "<UPDATE>",
+                "bin_mgr_id": "default",
+                "repo_type": "local"
+            }
+        ]
+    },
+    "assigned_policies": [
+        {
+            "name": "<UPDATE>",
+            "type": "security"
+        }
+    ]
+}

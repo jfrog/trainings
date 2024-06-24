@@ -28,6 +28,7 @@ export JFROG_ACCESS_TOKEN=<your_access_token>
 
 jf c add jfrog-saas --interactive=false --url=$JFROG_SAAS_URL --access-token=$JFROG_ACCESS_TOKEN
 jf c use jfrog-saas
+jf rt ping
 ```
 
 ### OPTIONAL - IDE
