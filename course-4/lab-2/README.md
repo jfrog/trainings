@@ -62,11 +62,15 @@ $JFROG_SAAS_URL/xray/api/v2/watches
 
 1. Go to `common/js` folder
 2. Build the Dockerfile
-3. Use Set Up A Docker Client for your <YOUR_NAME>-docker-local --> Here is the [official documentation](https://jfrog.com/help/r/jfrog-artifactory-documentation/use-kubernetes-with-artifactory-cloud)
+   -  `docker build -t <IMAGE_ID> .`
+3. Use Set Up A Docker Client for your `<YOUR_NAME>-docker-local` --> Here is the [official documentation](https://jfrog.com/help/r/jfrog-artifactory-documentation/use-kubernetes-with-artifactory-cloud)
+   -  `docker tag <IMAGE_ID> train17187377940.jfrog.io/<YOUR_NAME>-docker-local/<DOCKER_IMAGE>:<DOCKER_TAG>`
+   -  `docker login -u <YOUR JFROG USERNAME> train17187377940.jfrog.io`
 4. Upload a docker image to your docker repository
+   -  `docker push train17187377940.jfrog.io/<YOUR_NAME>-docker-local/<DOCKER_IMAGE>:<DOCKER_TAG>`
 
 ## View scan results on the UI
 
-1. Go to Xray > Scan List
+1. Go to Xray > Scan List (If it does not appear, wait a minute)
 2. Browse the different sections on a artifacts with vulnerabilities
 3. Browse the violation view and ignore violations
