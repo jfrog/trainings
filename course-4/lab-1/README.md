@@ -10,8 +10,6 @@ Setup a curation process to protect your developers
 
 Repo type | Repo key | Environment | Comment
 ---|---|--- |---
-REMOTE | <YOUR_NAME>-mavencentral-remote | DEV |
-VIRTUAL | <YOUR_NAME>-maven  | DEV | include the above repo
 REMOTE | <YOUR_NAME>-npmjs-remote | DEV |
 VIRTUAL | <YOUR_NAME>-npm  | DEV | include the above repo
 
