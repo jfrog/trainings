@@ -1,0 +1,3 @@
+{
+  "query": "query {packages(filter: {properties: [{name:\"build.name\", value:\"green-java-app\"},{name:\"build.number\", value:\"1\"}]},){edges {node {id name versions { name vulnerabilities { critical high }}}}}}"
+}

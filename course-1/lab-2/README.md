@@ -10,14 +10,14 @@ via the UI:
 
 ## As the Platform admin
 
-1. Create a 2 users and name respectively ```sunday``` and ```monday```
-2. Create a JFrog Project
-3. Onboard the user ```sunday``` as a Project Admin
+1. Create a 2 users and name respectively ```<YOUR NAME>_sunday``` and ```<YOUR NAME>_monday```
+2. Create a JFrog Project with ```<YOUR NAME>_``` as prefix
+3. Onboard the user ```<YOUR NAME>_sunday``` as a Project Admin
 
-## As the Project admin (sunday)
+## As the Project admin (```<YOUR NAME>_sunday```)
 
 1. Create a generic repository and assign the ```DEV``` environment
-2. Onboard the user ```monday``` as a Project Admin and grant the role ```Developer```
+2. Onboard the user ```<YOUR NAME>_monday``` as a member and grant the role ```Developer```
 
 ## As the Project user (monday)
 

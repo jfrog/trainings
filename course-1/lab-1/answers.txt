@@ -1,0 +1,37 @@
+## Upload using REST API
+curl \
+    -X PUT \
+    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+    -d "@test.txt" \
+$JFROG_SAAS_URL/artifactory/dakar-generic-test-local/test.txt
+
+## Download using REST API
+curl -o test.txt\
+    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+$JFROG_SAAS_URL/artifactory/dakar-generic-test-local/test.txt
+
+## Upload using REST API
+jf rt upload "test.txt" dakar-generic-test-local/cli-tests/
+
+## Download using REST API
+jf rt download dakar-generic-test-local/cli-tests/ .
+
+## Set properties using CLI
+jf rt sp dakar-generic-test-local/cli-tests/test.txt "runtime.deploy.datetime=20240219_08000;runtime.deploy.account=robot_sa"
+
+## AQL using the API
+jf rt curl -XPOST -H "Content-type: text/plain" api/search/aql -d"@query-aql-properties-rest.txt"
+
+## AQL using cli
+jf rt search --spec="query-aql-cli.json"
+
+## Using graphQL query to paste within graphiql
+query {packages(filter: {properties: [{name:"build.name", value:"green-java-app"},{name:"build.number", value:"1"}]},){edges {node {id name versions { name vulnerabilities { critical high }}}}}}
+
+## Using graphQL query using API
+curl \
+    -XPOST \
+    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+    -H "Content-Type: application/json" \
+    -d "@query-graphql.json" \
+$JFROG_SAAS_URL/metadata/api/v1/query 

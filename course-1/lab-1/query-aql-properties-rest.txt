@@ -1,0 +1,4 @@
+items.find({
+  "@app.name": "snake",
+  "@app.version": "1.0.0"
+})
