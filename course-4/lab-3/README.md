@@ -7,7 +7,7 @@
 
 ## JFrog Advanced Security capabilities
 
-Enable Contextual analysis on a docker repository
+Enable Contextual analysis on a docker repository (Administration -> Xray Settings -> Indexed Resources -> Configure)
 If you enable it on an already indexed repository, you'll have to enable the contextual analysis on demand per artifact.
 
 ## OPTIONAL - Configure the IDE plugin
