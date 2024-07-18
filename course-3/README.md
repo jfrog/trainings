@@ -11,7 +11,7 @@
 ## Labs
 
 1. Unidirectional transfer
-    + [Configure Push/pull Replications](../labs/configure-push-pull-replications/README.md)
-    + [RBv2 Distribution](../labs/rbv2-distribution/README.md)
+    + [Configure Push/pull Replications](lab1/README.md)
+    + [RBv2 Distribution](lab2/README.md)
 1. Bidirectional transfer
-    + [Federated Repositories](../labs/federated-repositories/README.md)
+    + [Federated Repositories](lab3/README.md)
