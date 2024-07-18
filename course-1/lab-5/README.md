@@ -28,7 +28,7 @@ Under "Administration" -> "Curation" -> "Curated Repositories", click the "State
 
 Switch to the "Application" sidebar, and navigate to "Curation" -> "Policies Management", and click "Create New Policy".
 
-   1. Policy Name: `malicious_packages`
+   1. Policy Name: `<YOUR NAME>_malicious_packages`
    2. Repositories: "Specific", and then select `<PROJECT_KEY>-npmjs-remote`.
    3. Policy Condition: "Malicious package".
    4. Waivers: None (just click "Next").
@@ -40,8 +40,8 @@ Switch to the "Application" sidebar, and navigate to "Curation" -> "Policies Man
 1. On your own machine, using the command prompt, navigate to the [common NodeJS module](../../common/js).
 2. Configure your NPM client to download packages from your remote
     1. Artifactory > virtual repositories > <PROJECT_KEY>-npm
-    2. Click on  `Setup Client` & follow the instruction
-    3. Make sure in your ~/.npmrc that the ```_authToken``` is specified and NOT ```_auth```
+    2. Click on  `Setup Client` & follow the instruction (Edit .npmrc (Scoped))
+    3. Make sure in your ~/.npmrc that the ```_authToken``` is specified and NOT ```_auth``` and NOT ```password```
 
     ```text
         //yann-sbx.jfrog.io/artifactory/api/npm/test-npm/:_authToken=cmVm*****
@@ -73,13 +73,13 @@ Switch to the "Application" sidebar, and navigate to "Curation" -> "Policies Man
 1. Navigate to the [common NodeJS module](../../common/js).
 
     ```bash
-    docker build -t $JFROG_SAAS_DNS/key-docker/my-js-demo:1.0.0 .    
+    docker build -t $JFROG_SAAS_DNS/<PROJECT_KEY>-docker/my-js-demo:1.0.0 .    
     ```
 
 2. Confgure the docker client and push the image
 
     ```bash
-    docker login $JFROG_SAAS_DNS
+    docker login $JFROG_SAAS_DNS ## use your access token as password
     docker push $JFROG_SAAS_DNS/<PROJECT_KEY>-docker/my-js-demo:1.0.0
     ```
 

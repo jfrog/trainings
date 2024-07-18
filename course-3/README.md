@@ -3,15 +3,15 @@
 ## Demos
 1. Unidirectional transfer
     + [Configure Push/Pull Replications](../demos/configure-push-pull-replications/README.md)
-    + [RBv2 Distribution](../demos/rbv2-distribution/README.md)
+    + [RBv2 Distribution](../demos/basics-bom-distribution/README.md)
 2. Bidirectional transfer
-    + [Federated Repositories](../demos/federated-repositories/README.md)
+    + [Federated Repositories](../demos/basics-repositories-federated/README.md)
     + [Access Federation & Mission Control](../demos/access-federation-mc/README.md)
 
 ## Labs
 
 1. Unidirectional transfer
-    + [Configure Push/pull Replications](../labs/configure-push-pull-replications/README.md)
-    + [RBv2 Distribution](../labs/rbv2-distribution/README.md)
+    + [Configure Push/pull Replications](lab-1/README.md)
+    + [RBv2 Distribution](lab-2/README.md)
 1. Bidirectional transfer
-    + [Federated Repositories](../labs/federated-repositories/README.md)
+    + [Federated Repositories](lab-3/README.md)

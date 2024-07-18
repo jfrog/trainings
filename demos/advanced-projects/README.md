@@ -31,8 +31,8 @@ curl \
    -X POST \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
-   -d '{"name": "<PROJECT_KEY>-RELEASE-CANDIDATE"}' \
-$JFROG_SAAS_URL/access/api/v1/projects/<PROJECT_KEY>/environments
+   -d '{"name": "blueteam-RELEASE-CANDIDATE"}' \
+$JFROG_SAAS_URL/access/api/v1/projects/blueteam/environments
 
 # create new repositories in your JFrog Project
 # be careful the repository key has to be part of the URL and match the "key" in the JSON payload !
@@ -41,14 +41,14 @@ curl \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
    -d "@payload/repo-api-def.json" \
-$JFROG_SAAS_URL/artifactory/api/repositories/dimanche-maven-archive-local
+$JFROG_SAAS_URL/artifactory/api/repositories/blueteam-maven-archive-local
 
 # assign existing repositories to your JFrog Project
 curl \
    -XPUT \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
-$JFROG_SAAS_URL/access/api/v1/projects/_/attach/repositories/<REPO_KEY>/<PROJECT_KEY>?force=true
+"$JFROG_SAAS_URL/access/api/v1/projects/_/attach/repositories/<REPO_KEY>/blueteam?force=true"
 ```
 
 ## Publish JFrog BOMs to Project
@@ -95,7 +95,7 @@ curl \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
    -d @"../basics-security-xray/payload/policy-api-def.json" \
-$JFROG_SAAS_URL/xray/api/v2/policies
+"$JFROG_SAAS_URL/xray/api/v2/policies?projectKey=blueteam"
 
 # add a query param "?projectKey=<PROJECT_KEY>" to create a project watch
 curl \
@@ -103,7 +103,7 @@ curl \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
    -d @"../basics-security-xray/payload/watch-api-def.json" \
-$JFROG_SAAS_URL/xray/api/v2/watches
+"$JFROG_SAAS_URL/xray/api/v2/watches?projectKey=blueteam"
 ```
 
 ## Switch to JFrog Projects

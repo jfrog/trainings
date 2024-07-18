@@ -2,18 +2,14 @@
 
 ## Demos
 
-1. Artifactory basics
-    + [Repositories basics](../demos/basics-repositories/README.md)
-    + [Artifact basics](../demos/basics-artifacts/README.md)
-    + [Search basics](../demos/basics-search/README.md)
-2. [Authentication & Authorization basics](../demos/advanced-access-authorization/README.md)
-3. [Repository structure](../demos/advanced-repositories/README.md)
-4. JFrog BOMs
+1. [Authentication & Authorization basics](../demos/advanced-access-authorization/README.md)
+2. [Repository structure](../demos/advanced-repositories/README.md)
+3. JFrog BOMs
     + [Basics](../demos/basics-bom/README.md)
-    + [Advanced](../demos/advanced-bom/README.md)
-5. JFrog Projects
+    + [Advanced](../demos/advanced-bom/README.md) NOT READY
+4. JFrog Projects
     + [Basics](../demos/basics-projects/README.md)
-    + [Advanced](../demos/advanced-projects/README.md)
+    + [Advanced](../demos/advanced-projects/README.md) BOM part NOT READY
 
 ## Labs
 
