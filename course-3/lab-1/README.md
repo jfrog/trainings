@@ -27,7 +27,7 @@ Name it `<USERNAME>-test-maven-target-remote`
 1. Select `Event replication`
 2. Run the Replication
 3. Check replication status (Platfom configuration > Topology > Replication)
-![Alt text](../images/course-3/configure_push_pull/topo_check.png)
+![Alt text](../../images/course-3/configure_push_pull/topo_check.png)
 
 ### Pull replication
 
@@ -38,7 +38,7 @@ Name it `<USERNAME>-test-maven-target-remote`
 5. Select `Enable Active Replication of this Repository`
 6. Enter a Cron Expression (to determines when the next replication will be triggered) `Ex: 0 15 10 * * ? *`
 7. Select `Event replication`
-[Alt text](../images/course-3/configure_push_pull/pull_repl.png)
+[Alt text](../../images/course-3/configure_push_pull/pull_repl.png)
 8. Press `Test` (to check the connectivity) and `Save`
 9. Run the Replication
 10. Check replication status (Platfom configuration > Topology > Replication)
