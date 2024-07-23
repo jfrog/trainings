@@ -34,7 +34,7 @@
    ```bash
    # scan the result of the maven build
    mvn clean package
-   jf scan target/*.war --watches CI --fail=false
+   jf scan target/*.jar --watches CI --fail=false
 
    echo $?
    ```
