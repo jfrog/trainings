@@ -4,7 +4,7 @@
 
 1. [Get familiar JFrog Curation](../demos/basics-security-curation/README.md)
 2. [Get familiar with JFrog Xray](../demos/basics-security-xray/README.md)
-3. [Get familiar with JFrog Advanced Security (JAS)](../demos/advanced-security-xray/README.md)
+3. [Get familiar with JFrog Advanced Security (JAS)](../demos/advanced-security-jas/README.md)
 4. [Shift left with the IDE](../demos/basics-security-ide/README.md)
 5. [Shift left with Frogbot](../demos/basics-security-frogbot/README.md)
 6. [Inject security scans in the pipelines](../demos/advanced-security-pipelines/README.md)

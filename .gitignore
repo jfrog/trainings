@@ -20,3 +20,4 @@ log-rest.log
 
 common/**/.jfrog**
 .DS_Store
+course-1/tf-init/tf-plan

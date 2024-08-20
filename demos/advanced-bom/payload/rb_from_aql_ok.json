@@ -4,6 +4,6 @@
   "skip_docker_manifest_resolution": true,
   "source_type": "aql",
   "source": {    
-    "aql": "items.find({ \"repo\": \"blueteam-maven-rc-local\", \"path\": \"com/jfrog/training/ExampleApp/0.0.1-SNAPSHOT\"})"
+    "aql": "items.find({ \"repo\": \"green-maven-dev-local\", \"path\": \"org/yann/demo/0.1.0\"})"
   }
 }

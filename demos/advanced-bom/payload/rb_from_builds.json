@@ -10,11 +10,6 @@
         "build_name": "blueteam-app",
         "build_number": "1",
         "include_dependencies": false
-      },
-      {
-        "build_name": "blueteam-app",
-        "build_number": "2",
-        "include_dependencies": false
       }
     ]
   }
