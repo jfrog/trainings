@@ -1,0 +1,9 @@
+localRepositories:
+  blueteam-oci-dev-local: null
+  blueteam-oci-rc-local: null
+  blueteam-oci-release-local: null
+  blueteam-oci-prod-local: null
+remoteRepositories:
+  dockerhub-remote: null
+virtualRepositories:
+  blueteam-oci: null
