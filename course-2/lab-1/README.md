@@ -72,7 +72,7 @@ Assign the following properties to a file
 curl \
    -X PUT \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-"$JFROG_SAAS_URL/artifactory/api/storage/<USERNAME>-generic-test-local/monday.txt?properties=os=win,linux;qa=done"
+"$JFROG_SAAS_URL/artifactory/api/storage/<USERNAME>-generic-test-local/cli-tests/monday.txt?properties=os=win,linux;qa=done"
 ```
 
 ## [OPTIONAL] Apply properties via the JFrog CLI
@@ -85,7 +85,7 @@ Assign the following properties to a file
 by executing the following command (don't forget to update the repository key)
 
 ```bash
-jf rt sp "username-generic-test-local/cli-tests/test.txt" "runtime.deploy.datetime=20240219_08000;runtime.deploy.account=robot_sa"
+jf rt sp "<USERNAME>-generic-test-local/test.txt" "runtime.deploy.datetime=20240219_08000;runtime.deploy.account=robot_sa"
 ```
 
 ## Search for artifacts with Artifactory Query Language (AQL)
@@ -94,18 +94,18 @@ jf rt sp "username-generic-test-local/cli-tests/test.txt" "runtime.deploy.dateti
 
 1. Update the following files with your own repository key
 
-+ **../../demos/basics-search/query-aql-properties-rest.txt**
-+ **../../demos/basics-search/query-aql-cli.json**
++ **query-aql-properties-rest.txt**
++ **query-aql-cli.json**
 
 Execute the following commands
 
 ```bash
 
 # Run an AQL query via the API
-jf rt curl -XPOST -H "Content-type: text/plain" api/search/aql -d"@../../demos/basics-search/query-aql-properties-rest.txt"
+jf rt curl -XPOST -H "Content-type: text/plain" api/search/aql -d"@query-aql-properties-rest.txt"
 
 # Run an AQL query via the JFrog CLI
-jf rt s --spec="../../demos/basics-search/query-aql-cli.json"
+jf rt s --spec="query-aql-cli.json"
 ```
 
 ## [OPTIONAL] Search for artifacts with GraphQL
@@ -116,10 +116,11 @@ jf rt s --spec="../../demos/basics-search/query-aql-cli.json"
 # the JFrog CLI rt curl command doesn't target metadata/api
 # we have to use curl
 curl \
-    -XPOST \
-    -H "Content-Type: application/json" \
-    -d "@../../demos/basics-search/query-graphql.json" \
-$JFROG_SAAS_URL/metadata/api/v1/query 
+   -XPOST \
+   -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+   -H "Content-Type: application/json" \
+   -d "@query-graphql.json" \
+"$JFROG_SAAS_URL/metadata/api/v1/query" 
 ```
 
 ### [OPTIONAL] GraphiQL
@@ -134,12 +135,13 @@ $JFROG_SAAS_URL/metadata/api/v1/query
 
 > Here is the [official documentation on the API](https://jfrog.com/help/r/jfrog-rest-apis/permissions)
 
+Create the following groups: <USERNAME>_developers, <USERNAME>_uploaders
 Create the following permission target(s) :
 
 Permission name | Resources | Population | Action | Comment
 ---|---|--- |--- |---
-developers | All Remote  | developers group | Read, Deploy/Cache
-uploaders  | All Remote + All local | uploaders group | Read, Deploy/Cache, Delete/Overwrite
+<USERNAME>_developers | All Remote  | developers group | Read, Deploy/Cache
+<USERNAME>_uploaders  | All Remote + All local | uploaders group | Read, Deploy/Cache, Delete/Overwrite
 
 By using the following command
 
