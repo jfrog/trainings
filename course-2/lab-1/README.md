@@ -197,7 +197,7 @@ Generate a token based on groups (will inherit the permission related to the gro
 curl \
    -XPOST \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-   -d "scope=applied-permissions/groups:uploaders" \
+   -d "scope=applied-permissions/groups:USERNAME_uploaders" \
 $JFROG_SAAS_URL/access/api/v1/tokens
 ```
 
@@ -216,6 +216,6 @@ curl \
    -d "username=ninja" \
    -d "refreshable=true" \
    -d "expires_in=300" \
-   -d "scope=applied-permissions/groups:developers" \
+   -d "scope=applied-permissions/groups:USERNAME_developers" \
 $JFROG_SAAS_URL/access/api/v1/tokens
 ```
