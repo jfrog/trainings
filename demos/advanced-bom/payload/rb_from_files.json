@@ -6,12 +6,10 @@
   "source": {
     "artifacts": [
       {
-        "path": "urs-generic-dev-local/Package_traceability.pdf",
-        "checksum" : "9d6721da320e277d7514fefb9f1c820c0a6b475d99505d906d93d3384541d46a"
+        "path": "green-test-generic-local/file.pdf"
       },
       {
-        "path": "urs-docker-dev-local/ubuntu/noble/manifest.json",
-        "checksum": "8a74610994bda8f615aa0022ad886194636ae7a992aa06ee36b096ef62bbe5d3"
+        "path": "green-maven-dev-local/org/yann/demo/0.1.0/demo-0.1.0.pom"
       }
     ]
   }

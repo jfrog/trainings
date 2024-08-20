@@ -21,14 +21,15 @@
 * from artifacts
 
 ```bash
+# edit payload/rb_from_files.json, and update artifacts paths as you like
 # create RBv2 from files
-# the uploaded GPG key is called rbv2_no_pass
+# the uploaded GPG key is called thekey, unless key name is different
 # don't specify virtual repo
 curl \
     -XPOST \
     -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
-    -H "X-JFrog-Signing-Key-Name: rbv2_no_pass" \
+    -H "X-JFrog-Signing-Key-Name: thekey" \
     -d @"payload/rb_from_files.json" \
 $JFROG_SAAS_URL/lifecycle/api/v2/release_bundle 
 ```
@@ -42,7 +43,7 @@ curl \
     -XPOST \
     -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
-    -H "X-JFrog-Signing-Key-Name: rbv2_no_pass" \
+    -H "X-JFrog-Signing-Key-Name: thekey" \
     -d @"payload/rb_from_aql_ok.json" \
 $JFROG_SAAS_URL/lifecycle/api/v2/release_bundle 
 ```
@@ -50,12 +51,13 @@ $JFROG_SAAS_URL/lifecycle/api/v2/release_bundle
 * from existing Build Info
 
 ```bash
+# edit payload/rb_from_builds.json, and update build_name, build_number according to your build info publish
 # create RBv2 from multiple existing build info
 curl \
     -XPOST \
     -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
-    -H "X-JFrog-Signing-Key-Name: rbv2_no_pass" \
+    -H "X-JFrog-Signing-Key-Name: thekey" \
     -d @"payload/rb_from_builds.json" \
 $JFROG_SAAS_URL/lifecycle/api/v2/release_bundle 
 ```
@@ -68,17 +70,17 @@ curl \
     -XPOST \
     -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
-    -H "X-JFrog-Signing-Key-Name: rbv2_no_pass" \
+    -H "X-JFrog-Signing-Key-Name: thekey" \
     -d  @"payload/rb_from_rbs.json" \
 $JFROG_SAAS_URL/lifecycle/api/v2/release_bundle 
 ```
 
-## RBv2 creation via the JFrog CLI
+## RBv2 creation via the JFrog CLI - NOT WORKING, SKIP
 
 > only support creation based on Build Info or RBv2
 
 ```bash
-jf rbc --signing-key="rbv2_no_pass" --builds ./list_of_builds.json <RBv2_NAME> <RBv2_VERSION>
+jf rbc --signing-key="thekey" --builds ./list_of_builds.json <RBv2_NAME> <RBv2_VERSION>
 ```
 
 ## RBv2 Promotion via API
@@ -86,20 +88,21 @@ jf rbc --signing-key="rbv2_no_pass" --builds ./list_of_builds.json <RBv2_NAME> <
 Make sure the target repository is assigned the right environment
 
 ```bash
+# under included_repository_keys put the relevant repositories that related to DEV environment according to the content of the RB: generic, maven, docker...
 # rbv2 promotion
 curl \
     -XPOST \
     -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
     -H "Content-Type: application/json" \
-    -H "X-JFrog-Signing-Key-Name: rbv2_no_pass" \
+    -H "X-JFrog-Signing-Key-Name: thekey" \
     -d @"payload/rb_promotion.json" \
 $JFROG_SAAS_URL/lifecycle/api/v2/promotion/records/rbv2_from_files/3.0.0 
 ```
 
-## RBv2 Promotion via the JFrog CLI
+## RBv2 Promotion via the JFrog CLI to PROD environment
 
 ```bash
-jf rbp  --signing-key="rbv2_no_pass" --overwrite=true <RBv2_NAME> <RBv2_VERSION> <ENV>
+jf rbp  --signing-key="thekey" --overwrite=true <RBv2_NAME> <RBv2_VERSION> <ENV>
 ```
 
 ## RBv2 Deletion via API
@@ -112,6 +115,6 @@ jf rbp  --signing-key="rbv2_no_pass" --overwrite=true <RBv2_NAME> <RBv2_VERSION>
 curl \
     -XDELETE \
     -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-    -H "X-JFrog-Signing-Key-Name: rbv2_no_pass" \
+    -H "X-JFrog-Signing-Key-Name: thekey" \
 "$JFROG_SAAS_URL/lifecycle/api/v2/promotion/records/rbv2_from_files/3.0.0/1708382591227?async=false" 
 ```

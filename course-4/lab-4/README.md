@@ -34,14 +34,14 @@
    ```bash
    # scan the result of the maven build
    mvn clean package
-   jf scan target/*.war --watches CI --fail=false
+   jf scan target/*.jar --watches CI --fail=false
 
    echo $?
    ```
 2. In a terminal, go to `common/js`, and run these commands:
    ```bash
    # scan a docker image
-   docker build -t js-app:1.0.0
+   docker build -t js-app:1.0.0 .
    jf docker scan  js-app:1.0.0 --watches CI --fail=false
    ```
 
