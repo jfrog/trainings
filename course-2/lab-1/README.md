@@ -16,44 +16,44 @@ LOCAL | [USERNAME]-generic-test-local | GENERIC | DEV |
 
 1. Upload a random file
 
-   ```bash
-      echo "Hello World" > test.txt
+```bash
+   echo "Hello World" > test.txt
 
-      curl \
-         -X PUT \
-         -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-         -d "@test.txt" \
-      $JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
-   ```
+   curl \
+      -X PUT \
+      -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+      -d "@test.txt" \
+   $JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
+```
 
 2. Delete the file from your local machine.
 3. Download the file using the REST API:
 
-   ```bash
-      curl \
-         -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-      $JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
-   ```
+```bash
+   curl \
+      -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+   $JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
+```
 
 ## Upload / Download via the JFrog CLI
 
 1. Create multiple text files
 
-   ```bash
-   for d in monday tuesday wednesday thursday; do echo "Hello $d !" > ${d}.txt ; done
-   ```
+```bash
+for d in monday tuesday wednesday thursday; do echo "Hello $d !" > ${d}.txt ; done
+```
 
 2. Upload multiple files to the repository using the JFrog CLI:
 
-   ```bash
-   jf rt upload "*.txt" <USERNAME>-generic-test-local/cli-tests/
-   ```
+```bash
+jf rt upload "*.txt" <USERNAME>-generic-test-local/cli-tests/
+```
 
 3. Download the content of a folder from the repository into your local machine:
 
-   ```bash
-   jf rt download <USERNAME>-generic-test-local/cli-tests/ .
-   ```
+```bash
+jf rt download <USERNAME>-generic-test-local/cli-tests/ .
+```
 
 ## Apply properties via the UI
 
