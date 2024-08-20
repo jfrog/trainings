@@ -41,7 +41,7 @@ $JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
 
 ```bash
 # This is a Linux command. If you're using Windows you can create the files manually or find the Windows equivalent - what takes faster
-for d in monday tuesday wednesday thursday; do echo "Hello $d !" > ${d}.txt ; done
+for d in monday tuesday wednesday thursday; do echo "Hello $d \!" > ${d}.txt ; done
 ```
 
 2. Upload multiple files to the repository using the JFrog CLI:
