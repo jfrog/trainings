@@ -6,7 +6,7 @@
   "source": {
     "artifacts": [
       {
-        "path": "dakar-test-generic-src-local/Docker Compose Installation - HA.pdf"
+        "path": "green-test-generic-local/file.pdf"
       },
       {
         "path": "green-maven-dev-local/org/yann/demo/0.1.0/demo-0.1.0.pom"
