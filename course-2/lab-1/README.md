@@ -17,22 +17,22 @@ LOCAL | [USERNAME]-generic-test-local | GENERIC | DEV |
 1. Upload a random file
 
 ```bash
-   echo "Hello World" > test.txt
+echo "Hello World" > test.txt
 
-   curl \
-      -X PUT \
-      -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-      -d "@test.txt" \
-   $JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
+curl \
+   -X PUT \
+   -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+   -d "@test.txt" \
+$JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
 ```
 
 2. Delete the file from your local machine.
 3. Download the file using the REST API:
 
 ```bash
-   curl \
-      -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-   $JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
+curl \
+   -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+$JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
 ```
 
 ## Upload / Download via the JFrog CLI
@@ -68,10 +68,10 @@ jf rt download <USERNAME>-generic-test-local/cli-tests/ .
 Assign the following properties to a file
 
 ```bash
-   curl \
-      -X PUT \
-      -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-   "$JFROG_SAAS_URL/artifactory/api/storage/<USERNAME>-generic-test-local/monday.txt?properties=os=win,linux;qa=done"
+curl \
+   -X PUT \
+   -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+"$JFROG_SAAS_URL/artifactory/api/storage/<USERNAME>-generic-test-local/monday.txt?properties=os=win,linux;qa=done"
 ```
 
 ## [OPTIONAL] Apply properties via the JFrog CLI
