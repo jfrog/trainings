@@ -144,14 +144,14 @@ Permission name | Resources | Population | Action | Comment
 USERNAME_developers | All Remote  | developers group | Read, Deploy/Cache
 USERNAME_uploaders  | All Remote + All local | uploaders group | Read, Deploy/Cache, Delete/Overwrite
 
-By using the following command
+By using the following command(DONT FORGET to update pt-api-def-latest.json with your permission name and group name)
 
 ```bash
 curl \
    -X POST \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
-   -d @"../../demos/advanced-access-authorization/payload/pt-api-def-latest.json" \
+   -d @"pt-api-def-latest.json" \
 $JFROG_SAAS_URL/access/api/v2/permissions/
 ```
 
@@ -163,14 +163,14 @@ Create the following permission target(s) :
 
 Permission name | Resources | Population | Action | Comment
 ---|---|--- |--- |---
-consumers  | All Remote + All local | deployers group | Read, Annotate
+USERNAME_consumers  | All Remote + All local | USERNAME_uploaders group | Read, Annotate
 
 ```bash
 # generate 1 permission target definition and store it into permissions.json
 jf rt ptt pt-cli-template.json
 
 # apply 1 permission target definition
-jf rt ptc --vars pt-cli-template.json
+jf rt ptc pt-cli-template.json
 ```
 
 ## Creating Scoped Tokens
@@ -197,7 +197,7 @@ Generate a token based on groups (will inherit the permission related to the gro
 curl \
    -XPOST \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-   -d "scope=applied-permissions/groups:deployers" \
+   -d "scope=applied-permissions/groups:uploaders" \
 $JFROG_SAAS_URL/access/api/v1/tokens
 ```
 

@@ -1,0 +1,19 @@
+{
+    "name" : "dakar_developers",
+    "resources" : {
+      "artifact" : {
+        "actions" : {
+          "users" : { },
+          "groups" : {
+            "dakar_developers" : [ "READ", "WRITE", "ANNOTATE" ]
+          }
+        },
+        "targets" : {
+          "ANY REMOTE" : {
+            "include_patterns" : [ "**" ],
+            "exclude_patterns" : [ ]
+          }
+        }
+      }
+    }
+}
