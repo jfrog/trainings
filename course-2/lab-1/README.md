@@ -136,6 +136,7 @@ curl \
 > Here is the [official documentation on the API](https://jfrog.com/help/r/jfrog-rest-apis/permissions)
 
 Create the following groups: USERNAME_developers, USERNAME_uploaders
+
 Create the following permission target(s) :
 
 Permission name | Resources | Population | Action | Comment
