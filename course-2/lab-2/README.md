@@ -6,7 +6,7 @@ Be familiar with the API, the JFrog CLI, JFrog's Terraform provider capabilities
 
 ## Create a repository structure using the Rest API
 
-> Come up with a ```<PROJECT_KEY>``` which will be used as prefix for all your repositories
+> Come up with a ```<PROJECT_KEY>``` which will be used as prefix for all your repositories(the project key can be your NAME)
 
 Create the following repositories using the Rest API
 
@@ -19,15 +19,16 @@ LOCAL | <PROJECT_KEY>-maven-prod-local | MAVEN | PROD |
 REMOTE | mavencentral-remote | MAVEN | DEV |
 VIRTUAL | <PROJECT_KEY>-maven | MAVEN | DEV | include the 3 repos above and set default deployement to  <PROJECT_KEY>-maven-rc-local
 
-Use the following cUrl command to create one repository at a time. You can edit the JSON payload located in **../../demos/advanced-repository/payload/repo-api-def.json** or create a new one for each execution
+Use the following cURL command to create one repository at a time. You can edit the JSON payload located in **repo-api-def.json** or create a new one for each execution
 
 ```bash
 # be careful the repository key has to be part of the URL and match the "key" in the JSON payload !
+# you can use the help of the docs for virtual -> https://jfrog.com/help/r/jfrog-rest-apis/repository-configuration-json
 curl \
    -X PUT \
       -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
       -H "Content-Type: application/json" \
-      -d "@../../demos/advanced-repository/payload/repo-api-def.json" \
+      -d "@repo-api-def.json" \
       $JFROG_SAAS_URL/artifactory/api/repositories/<REPO_KEY>
 ```
 
@@ -39,12 +40,12 @@ Create the following repositories :
 
 Repo type | Repo key | Package type | Environment | Comment
 ---|---|--- |---|---
-LOCAL | <PROJECT_KEY>-oci-dev-local | OCI |DEV |
-LOCAL | <PROJECT_KEY>-oci-rc-local | OCI |DEV |
-LOCAL | <PROJECT_KEY>-oci-release-local | OCI |PROD |
-LOCAL | <PROJECT_KEY>-oci-prod-local | OCI | PROD |
-REMOTE | dockerhub-remote | OCI | DEV |
-VIRTUAL | <PROJECT_KEY>-oci | OCI | DEV | include the oci repos above and set default deployement to  <PROJECT_KEY>-oci-rc-local
+LOCAL | <PROJECT_KEY>-docker-dev-local | DOCKER |DEV |
+LOCAL | <PROJECT_KEY>-docker-rc-local | DOCKER |DEV |
+LOCAL | <PROJECT_KEY>-docker-release-local | DOCKER |PROD |
+LOCAL | <PROJECT_KEY>-docker-prod-local | DOCKER | PROD |
+REMOTE | dockerhub-remote | DOCKER | DEV |
+VIRTUAL | <PROJECT_KEY>-docker | DOCKER | DEV | include the oci repos above and set default deployement to  <PROJECT_KEY>-oci-rc-local
 
 1. Use the repository creation template command to generate a JSON file describing the repository:
 
@@ -62,11 +63,11 @@ VIRTUAL | <PROJECT_KEY>-oci | OCI | DEV | include the oci repos above and set de
    jf rt rc repository.json
    ```
 
-4. Now let's use some advanced capabilities by executing this command :
+4. Now let's use some advanced capabilities by executing this command(for linux users, for windows find the equivalent or skip) :
 
    ```bash
-   for maturity in "rc release prod"; do 
-      jf rt rc --vars "team=blueteam;pkgType=npm;maturity=$maturity;" ../../demos/advanced-repositories/repo-cli-template.json 
+   for maturity in rc release prod; do 
+      jf rt rc --vars "team=PROJECT_KEY;pkgType=docker;maturity=$maturity;" repo-cli-template.json 
    done
    ```
 
@@ -95,35 +96,16 @@ VIRTUAL | <PROJECT_KEY>-generic | GENERIC | DEV | include the generic repos abov
 
 ```bash
    # NOTES :
+   #   - update repo-api-def-all.yaml with your values
    #   - don't use -d option to specify the YAML file
    #   - environment field cannot be set (yet)
    jf rt curl \
          -X PATCH \
          -H "Content-Type: application/yaml" \
-         -T @../../demos/advanced-repositories/payload/repo-api-def-all.yaml \
+         -T @repo-api-def-all.yaml \
          api/system/configuration
 ```
 
 ## [OPTIONAL] Create a repository structure using the JFrog's Terraform Provider
 
-An example Terraform module is provided: [repository-create.tf](repository-create.tf).
-create my.tfvars with the following variables :
-
-- artifactory_url
-- artifactory_access_token
-
-**More info on the [JFrog official doc](https://registry.terraform.io/providers/jfrog/artifactory/latest/docs)**
-
-```bash
-# download the provider
-terraform init
-
-# check changes to be applied
-terraform plan --var-file=my.tfvars
-
-# apply changes 
-terraform apply --var-file=my.tfvars
-
-# remove changes
-terraform destroy --var-file=my.tfvars
-```
+Follow the terraform demo in https://github.com/jfrog/trainings/tree/main/demos/advanced-repositories at the bottom. 
