@@ -1,0 +1,41 @@
+localRepositories:
+  blueteam-oci-dev-local:
+    type: docker
+    repoLayout: simple-default
+    xray:
+      enabled: true
+  blueteam-oci-rc-local:
+    type: oci
+    repoLayout: simple-default
+    xray:
+      enabled: true
+  blueteam-oci-release-local:
+    type: oci
+    repoLayout: simple-default
+    xray:
+      enabled: true
+  blueteam-oci-prod-local:
+    type: oci
+    repoLayout: simple-default
+    xray:
+      enabled: true
+remoteRepositories:
+  dockerhub-remote:
+    type: docker
+    url: https://registry-1.docker.io/
+    dockerApiVersion: V2
+    repoLayout: simple-default
+    enableTokenAuthentication: true
+    xray:
+      enabled: true
+virtualRepositories:
+  blueteam-oci:
+    type: oci
+    repoLayout: simple-default
+    repositories:
+      - blueteam-oci-dev-local
+      - blueteam-oci-rc-local
+      - blueteam-oci-release-local
+      - blueteam-oci-prod-local
+      - dockerhub-remote
+    defaultDeploymentRepo: blueteam-oci-rc-local

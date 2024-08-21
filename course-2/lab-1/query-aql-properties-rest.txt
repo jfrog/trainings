@@ -1,0 +1,5 @@
+items.find({
+  "repo": "<YOUR REPO KEY>",
+  "@app.name": "snake",
+  "@app.version": "1.0.0"
+})

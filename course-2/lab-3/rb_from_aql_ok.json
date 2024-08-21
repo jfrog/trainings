@@ -1,0 +1,9 @@
+{
+  "release_bundle_name": "USERNAME_rbv2_from_aql",
+  "release_bundle_version": "1.0.0",
+  "skip_docker_manifest_resolution": true,
+  "source_type": "aql",
+  "source": {    
+    "aql": "items.find({ \"repo\": \"USERNAME-maven-rc-local\", \"path\": \"org/yann/demo/0.0.1-SNAPSHOT\"})"
+  }
+}

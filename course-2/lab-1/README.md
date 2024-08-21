@@ -16,44 +16,45 @@ LOCAL | [USERNAME]-generic-test-local | GENERIC | DEV |
 
 1. Upload a random file
 
-   ```bash
-      echo "Hello World" > test.txt
+```bash
+echo "Hello World" > test.txt
 
-      curl \
-         -X PUT \
-         -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-         -d "@test.txt" \
-      $JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
-   ```
+curl \
+   -X PUT \
+   -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+   -d "@test.txt" \
+$JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
+```
 
 2. Delete the file from your local machine.
 3. Download the file using the REST API:
 
-   ```bash
-      curl \
-         -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-      $JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
-   ```
+```bash
+curl \
+   -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+$JFROG_SAAS_URL/artifactory/<USERNAME>-generic-test-local/test.txt
+```
 
 ## Upload / Download via the JFrog CLI
 
 1. Create multiple text files
 
-   ```bash
-   for d in monday tuesday wednesday thursday; do echo "Hello $d !" > ${d}.txt ; done
-   ```
+```bash
+# This is a Linux command. If you're using Windows you can create the files manually or find the Windows equivalent - what takes faster
+for d in monday tuesday wednesday thursday; do echo "Hello $d \!" > ${d}.txt ; done
+```
 
 2. Upload multiple files to the repository using the JFrog CLI:
 
-   ```bash
-   jf rt upload "*.txt" <USERNAME>-generic-test-local/cli-tests/
-   ```
+```bash
+jf rt upload "*.txt" <USERNAME>-generic-test-local/cli-tests/
+```
 
 3. Download the content of a folder from the repository into your local machine:
 
-   ```bash
-   jf rt download <USERNAME>-generic-test-local/cli-tests/ .
-   ```
+```bash
+jf rt download <USERNAME>-generic-test-local/cli-tests/ .
+```
 
 ## Apply properties via the UI
 
@@ -68,10 +69,10 @@ LOCAL | [USERNAME]-generic-test-local | GENERIC | DEV |
 Assign the following properties to a file
 
 ```bash
-   curl \
-      -X PUT \
-      -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-   "$JFROG_SAAS_URL/artifactory/api/storage/<USERNAME>-generic-test-local/monday.txt?properties=os=win,linux;qa=done"
+curl \
+   -X PUT \
+   -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+"$JFROG_SAAS_URL/artifactory/api/storage/<USERNAME>-generic-test-local/cli-tests/monday.txt?properties=os=win,linux;qa=done"
 ```
 
 ## [OPTIONAL] Apply properties via the JFrog CLI
@@ -84,7 +85,7 @@ Assign the following properties to a file
 by executing the following command (don't forget to update the repository key)
 
 ```bash
-jf rt sp "username-generic-test-local/cli-tests/test.txt" "runtime.deploy.datetime=20240219_08000;runtime.deploy.account=robot_sa"
+jf rt sp "<USERNAME>-generic-test-local/test.txt" "runtime.deploy.datetime=20240219_08000;runtime.deploy.account=robot_sa"
 ```
 
 ## Search for artifacts with Artifactory Query Language (AQL)
@@ -93,18 +94,18 @@ jf rt sp "username-generic-test-local/cli-tests/test.txt" "runtime.deploy.dateti
 
 1. Update the following files with your own repository key
 
-+ **../../demos/basics-search/query-aql-properties-rest.txt**
-+ **../../demos/basics-search/query-aql-cli.json**
++ **query-aql-properties-rest.txt**
++ **query-aql-cli.json**
 
 Execute the following commands
 
 ```bash
 
 # Run an AQL query via the API
-jf rt curl -XPOST -H "Content-type: text/plain" api/search/aql -d"@../../demos/basics-search/query-aql-properties-rest.txt"
+jf rt curl -XPOST -H "Content-type: text/plain" api/search/aql -d"@query-aql-properties-rest.txt"
 
 # Run an AQL query via the JFrog CLI
-jf rt s --spec="../../demos/basics-search/query-aql-cli.json"
+jf rt s --spec="query-aql-cli.json"
 ```
 
 ## [OPTIONAL] Search for artifacts with GraphQL
@@ -115,10 +116,11 @@ jf rt s --spec="../../demos/basics-search/query-aql-cli.json"
 # the JFrog CLI rt curl command doesn't target metadata/api
 # we have to use curl
 curl \
-    -XPOST \
-    -H "Content-Type: application/json" \
-    -d "@../../demos/basics-search/query-graphql.json" \
-$JFROG_SAAS_URL/metadata/api/v1/query 
+   -XPOST \
+   -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
+   -H "Content-Type: application/json" \
+   -d "@query-graphql.json" \
+"$JFROG_SAAS_URL/metadata/api/v1/query" 
 ```
 
 ### [OPTIONAL] GraphiQL
@@ -133,21 +135,23 @@ $JFROG_SAAS_URL/metadata/api/v1/query
 
 > Here is the [official documentation on the API](https://jfrog.com/help/r/jfrog-rest-apis/permissions)
 
+Create the following groups: USERNAME_developers, USERNAME_uploaders
+
 Create the following permission target(s) :
 
 Permission name | Resources | Population | Action | Comment
 ---|---|--- |--- |---
-developers | All Remote  | developers group | Read, Deploy/Cache
-uploaders  | All Remote + All local | uploaders group | Read, Deploy/Cache, Delete/Overwrite
+USERNAME_developers | All Remote  | developers group | Read, Deploy/Cache
+USERNAME_uploaders  | All Remote + All local | uploaders group | Read, Deploy/Cache, Delete/Overwrite
 
-By using the following command
+By using the following command(DONT FORGET to update pt-api-def-latest.json with your permission name and group name)
 
 ```bash
 curl \
    -X POST \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
-   -d @"../../demos/advanced-access-authorization/payload/pt-api-def-latest.json" \
+   -d @"pt-api-def-latest.json" \
 $JFROG_SAAS_URL/access/api/v2/permissions/
 ```
 
@@ -159,14 +163,14 @@ Create the following permission target(s) :
 
 Permission name | Resources | Population | Action | Comment
 ---|---|--- |--- |---
-consumers  | All Remote + All local | deployers group | Read, Annotate
+USERNAME_consumers  | All Remote + All local | USERNAME_uploaders group | Read, Annotate
 
 ```bash
 # generate 1 permission target definition and store it into permissions.json
 jf rt ptt pt-cli-template.json
 
 # apply 1 permission target definition
-jf rt ptc --vars pt-cli-template.json
+jf rt ptc pt-cli-template.json
 ```
 
 ## Creating Scoped Tokens
@@ -193,7 +197,7 @@ Generate a token based on groups (will inherit the permission related to the gro
 curl \
    -XPOST \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
-   -d "scope=applied-permissions/groups:deployers" \
+   -d "scope=applied-permissions/groups:USERNAME_uploaders" \
 $JFROG_SAAS_URL/access/api/v1/tokens
 ```
 
@@ -212,6 +216,6 @@ curl \
    -d "username=ninja" \
    -d "refreshable=true" \
    -d "expires_in=300" \
-   -d "scope=applied-permissions/groups:developers" \
+   -d "scope=applied-permissions/groups:USERNAME_developers" \
 $JFROG_SAAS_URL/access/api/v1/tokens
 ```

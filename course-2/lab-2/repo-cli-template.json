@@ -1,0 +1,5 @@
+{
+  "key": "${team}-${pkgType}-${maturity}-local",
+  "rclass": "local",
+  "packageType": "${pkgType}"
+}

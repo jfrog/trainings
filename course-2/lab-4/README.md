@@ -8,21 +8,21 @@ Automate JFrog Projects creation and configuration
 
 > Here is the [official documentation for JFrog Project](https://jfrog.com/help/r/jfrog-rest-apis/projects?tocId=EdXas7XMSjSwMAunjWXA7w)
 
-Set a stoarge quota to 1 GB and disable Project admin
+Set display name, project key and a stoarge quota to 1 GB and disable Project admin within project-api-def.json
 
 ```bash
 curl \
    -XPOST \
    -H "Authorization: Bearer $JFROG_ACCESS_TOKEN" \
    -H "Content-Type: application/json" \
-   -d @"../../demos/advanced-projects/payload/project-api-def.json" \
+   -d @"project-api-def.json" \
 $JFROG_SAAS_URL/access/api/v1/projects
 ```
 
 ## Provision repositories
 
 1. [Move / Assign](https://jfrog.com/help/r/jfrog-platform-administration-documentation/step-3-add-or-assign-resources-to-projects) existing repositories to your JFrog Project using the UI and then API
-2. [OPTIONAL] Create new repositories in your JFrog Project using the UI and then API
+2. [OPTIONAL] Create new repositories in your JFrog Project using the UI and then API(for that you can use repo-api-def.json BUT UPDATE ITS VALUES)
 
 ## Publish BOMs
 
@@ -37,6 +37,6 @@ $JFROG_SAAS_URL/access/api/v1/projects
 > * [official documentation for Policies](https://jfrog.com/help/r/xray-rest-apis/policies-v2)
 > * [official documentation for Watches](https://jfrog.com/help/r/xray-rest-apis/watches)
 
-1. Create a new Project role named **Security Champion** role which can't create polices but can manage watches & reports
+1. Create a new Project role named **Security Champion** role which can't create polices but can manage watches & reports(you can use role-api-def.json if you prefer API)
 2. Create a Xray Global security policy
 3. Create a Xray Project watch configured with any repositories in the Project and the above Security policy
