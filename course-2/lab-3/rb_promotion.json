@@ -1,0 +1,5 @@
+
+{
+    "environment": "DEV",
+    "included_repository_keys": ["dakar-maven-dev-local"]
+}

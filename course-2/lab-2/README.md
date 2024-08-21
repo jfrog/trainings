@@ -6,7 +6,7 @@ Be familiar with the API, the JFrog CLI, JFrog's Terraform provider capabilities
 
 ## Create a repository structure using the Rest API
 
-> Come up with a ```<PROJECT_KEY>``` which will be used as prefix for all your repositories(the project key can be your NAME)
+> Come up with a ```<PROJECT_KEY>``` which will be used as prefix for all your repositories(the project key can be your USERNAME)
 
 Create the following repositories using the Rest API
 
