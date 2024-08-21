@@ -1,0 +1,15 @@
+{
+    "display_name": "Blue Team",
+    "description": "created via automation",
+    "admin_privileges": {
+      "manage_members": false,
+      "manage_resources": false,
+      "manage_security_assets": false,
+      "index_resources": false,
+      "allow_ignore_rules": false
+    },
+    "storage_quota_bytes": 1073741824,
+    "soft_limit": false,
+    "storage_quota_email_notification": true,
+    "project_key": "blueteam"
+}

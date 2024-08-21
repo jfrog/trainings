@@ -1,0 +1,6 @@
+{
+  "key": "blueteam-maven-archive-local",
+  "rclass": "local",
+  "packageType": "maven",
+  "projectKey" : "blueteam"
+}
