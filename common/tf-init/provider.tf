@@ -15,5 +15,4 @@ terraform {
 # Configure the Artifactory provider
 provider "artifactory" {
     url = var.main_url
-    access_token = var.main_access_token
 }
