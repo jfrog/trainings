@@ -1,10 +1,9 @@
 .idea/
 *.class
 **/target/
-**/.terraform/**
+**/.terraform
 **/.terraform.*
 terraform.tfstate*
-**/secrets.auto.tfvars
 
 .npmrc
 **/node_modules**/
@@ -20,4 +19,3 @@ log-rest.log
 
 common/**/.jfrog**
 .DS_Store
-course-1/tf-init/tf-plan
