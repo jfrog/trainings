@@ -1,6 +1,6 @@
 ## Please set the following values within secret.auto.tfvars
-#### main_url, edge_url
-#### main_access_token, edge_access_token
+#### main_url
+#### main_access_token
 
 
 terraform {
@@ -15,10 +15,4 @@ terraform {
 # Configure the Artifactory provider
 provider "artifactory" {
     url = var.main_url
-    access_token = var.main_access_token
-}
-provider "artifactory" {
-    alias = "edge"
-    url = var.edge_url
-    access_token = var.edge_access_token
 }
