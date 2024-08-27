@@ -61,7 +61,7 @@ echo "*****************************"
 echo "**** PUSH IMAGE TO ARTIFACTORY WITH BUILD INFO"  
 echo "*****************************"
 
-docker push $MY_IMAGE --build-name="${JFROG_CLI_BUILD_NAME}-container" --build-number=${JFROG_CLI_BUILD_NUMBER}
+jf docker push $MY_IMAGE --build-name="${JFROG_CLI_BUILD_NAME}-container" --build-number=${JFROG_CLI_BUILD_NUMBER}
 
 # add application as a dependeny of the Container Build Info
 jf bad "./target/*.war" "${JFROG_CLI_BUILD_NAME}-container" ${JFROG_CLI_BUILD_NUMBER}
