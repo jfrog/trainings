@@ -42,7 +42,7 @@ VIRTUAL | <PROJECT_KEY>-maven  | DEV | include the 3 repos above and set default
    jf rt bp
    ```
 
-Then, navigate to "Artifactory" -> "Builds", and show `green-app` and its build (`1`).
+Then, navigate to "Artifactory" -> "Builds", and show `$MY_PROJ_KEY-app` and its build (`1`).
 Show the Build info repository on the UI
 
 ### Create RBv2 (from UI)
