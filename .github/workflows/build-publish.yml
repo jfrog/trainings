@@ -24,7 +24,7 @@ jobs:
       PLATFORM_REPO: 'training-npm'
      defaults:
       run:
-        working-directory: ./oidc/npm-packages
+        working-directory: oidc/npm-packages
      steps:
        - name: Checkout
          uses: actions/checkout@v3
