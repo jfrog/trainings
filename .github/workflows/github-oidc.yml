@@ -31,11 +31,14 @@ jobs:
               
        - name: Setup Node npm
          uses: actions/setup-node@v3
-   
+     #Below Action Setup CLI was previouly dependant on Hardcoded jfrog ACCESS TOKEN as a secret in github as JF_ACCESS_TOKEN
+     # With OIDC integration we would eliminate the use of secret for a dynamically generated ACCESS TOKEN.
+     # We commented JF_ACCESS_TOKEN Below and Changed it to OIDC settings to generate the ACCESSS TOKEN. 
        - name: Setup JFrog CLI
          uses: jfrog/setup-jfrog-cli@v4
          env:  
            JF_URL: ${{ vars.JF_URL }}
+           #JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
          with:
            oidc-provider-name: ${{ env.OIDC_PROVIDER }}
            oidc-audience: ${{ env.OIDC_AUDIENCE }}
