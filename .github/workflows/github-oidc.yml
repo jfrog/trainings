@@ -42,6 +42,11 @@ jobs:
          with:
            oidc-provider-name: ${{ env.OIDC_PROVIDER }}
            oidc-audience: ${{ env.OIDC_AUDIENCE }}
+       
+       - name: Debug OIDC Claims
+         uses: github/actions-oidc-debugger@main
+         with:
+          audience: '${{ github.server_url }}/${{ github.repository_owner }}'
 
        - name: Set CLI Config
          run: jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
