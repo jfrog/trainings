@@ -1,7 +1,9 @@
 # Github Workflow to Show the Github OIDC Integration with JFrog
 name: "JFrog-GitHub-OIDC-Integration"
-on: push
-
+on: 
+  push:
+  workflow_dispatch:
+  
 # This is required as per
 # https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers#adding-permissions-settings
 permissions:
