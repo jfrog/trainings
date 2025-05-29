@@ -51,6 +51,7 @@ jobs:
            
        - name: Set CLI Config
          run: |
+           environment: OIDC
            jf c add --url=${{ vars.JF_URL }} --oidc-provider-name=setup-jfrog-oidc--cli --interactive=false
            jf eot setup-jfrog-oidc--cli $JFROG_CLI_OIDC_EXCHANGE_TOKEN_ID
            jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
