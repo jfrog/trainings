@@ -16,7 +16,7 @@ permissions:
 jobs:
   build:
      runs-on: ubuntu-latest
-     environment: oidc
+     environment: OIDC
      env:
       OIDC_AUDIENCE: 'jfrog-github'
       OIDC_PROVIDER: 'github-oidc'
