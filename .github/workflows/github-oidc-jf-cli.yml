@@ -1,0 +1,83 @@
+# Github Workflow to Show the Github OIDC Integration with JFrog
+name: "JFrog-GitHub-OIDC-Integration-Using-JF-CLI"
+on: 
+  push:
+  workflow_dispatch:
+  
+# This is required as per
+# https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers#adding-permissions-settings
+permissions:
+  actions: read # For detecting the Github Actions environment.
+  id-token: write # for creating OIDC tokens for signing.
+  packages: write # for uploading attestations.
+  security-events: write # Required for uploading code scanning
+  attestations: write
+  contents: read
+jobs:
+  build:
+     runs-on: ubuntu-latest
+     environment: oidc
+     env:
+      OIDC_AUDIENCE: 'jfrog-github'
+      OIDC_PROVIDER: 'github-oidc'
+      # Prerequisite Repository Settings in UI: 'training-npm' used as PLATFORM_REPO, is a virtual repository. This Virtual Repository, 
+      # consists of a local npm repository to upload the artifact '' and a remote npm repo " to resolve build dependencies. 
+      #The Default Deployment Repository Setting, inside the Virtual Repo is set to Local Repo ''
+      PLATFORM_REPO: 'training-npm'
+     defaults:
+      run:
+        working-directory: oidc/npm-packages
+     steps:
+       - name: Checkout
+         uses: actions/checkout@v3
+              
+       - name: Setup Node npm
+         uses: actions/setup-node@v3
+     #Below Action Setup CLI was previouly dependant on Hardcoded jfrog ACCESS TOKEN as a secret in github as JF_ACCESS_TOKEN
+     # With OIDC integration we would eliminate the use of secret for a dynamically generated ACCESS TOKEN.
+     # We commented JF_ACCESS_TOKEN Below and Changed it to OIDC settings to generate the ACCESSS TOKEN. 
+       - name: Get Github ID Token
+         run: |
+           ID_TOKEN=$(curl -sLS \
+           -H "User-Agent: actions/oidc-client" \
+           -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+           "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=jfrog-github" | jq .value | tr -d '"')
+           echo "::add-mask::$ID_TOKEN"
+           echo "JFROG_CLI_OIDC_EXCHANGE_TOKEN_ID=${ID_TOKEN}" >> $GITHUB_ENV
+       - name: Setup JFrog CLI
+         uses: jfrog/setup-jfrog-cli@v4
+         env:  
+           JF_URL: ${{ vars.JF_URL }}
+           
+       - name: Set CLI Config
+         run: |
+           jf c add --url=$JF_URL --oidc-provider-name=setup-jfrog-oidc--cli --interactive=false
+           jf eot setup-jfrog-oidc--cli $JFROG_CLI_OIDC_EXCHANGE_TOKEN_ID
+           jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
+           
+       - name: Install Dependencies
+         run: jf npm install
+           
+       - name: Run tests
+         run: npm test
+         
+       - name: Publish
+         run: jf npm publish
+         
+       - name: Publish Build info With JFrog CLI
+         run: |
+          # Collect environment variables for the build
+          jf rt build-collect-env
+          # Collect VCS details from git and add them to the build
+          jf rt build-add-git
+          # Publish build info
+          jf rt build-publish
+      #Adding a Delay for the Xray Security Scan for the Builds.
+       - name: Sleep for 60 seconds
+         uses: jakejarvis/wait-action@master
+         with:
+           time: '60s'
+       - name: build scan
+         if: ${{ true }}
+         run: |
+            jf build-scan --vuln --fail=false
