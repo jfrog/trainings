@@ -45,7 +45,7 @@ jobs:
            echo "::add-mask::$ID_TOKEN"
            echo "JFROG_CLI_OIDC_EXCHANGE_TOKEN_ID=${ID_TOKEN}" >> $GITHUB_ENV
        - name: Setup JFrog CLI
-         uses: jfrog/setup-jfrog-cli@latest
+         uses: jfrog/setup-jfrog-cli@4.5.10
          env:  
            JF_URL: ${{ vars.JF_URL }}
            
