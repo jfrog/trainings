@@ -84,4 +84,4 @@ jobs:
        - name: build scan
          if: ${{ true }}
          run: |
-            jf build-scan --vuln --fail=false
+            jf build-scan $GITHUB_JOB $GITHUB_RUN_ID --vuln --fail=false
