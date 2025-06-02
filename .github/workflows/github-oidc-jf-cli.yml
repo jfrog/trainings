@@ -56,6 +56,8 @@ jobs:
            jf c add --url=${{ vars.JF_URL }} --oidc-provider-name=github-oidc --interactive=false
            jf c show
            jf eot github-oidc $JFROG_CLI_OIDC_EXCHANGE_TOKEN_ID
+           jf c s
+           jf c use github-oidc
            jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
            jf npm install
        - name: Install Dependencies
