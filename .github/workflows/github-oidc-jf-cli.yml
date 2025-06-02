@@ -58,7 +58,7 @@ jobs:
            jf c show
            jf eot github-oidc $JFROG_CLI_OIDC_EXCHANGE_TOKEN_ID
            jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
-           jf npm install
+           # jf npm install
        - name: Install Dependencies
          run: jf npm install
            
@@ -66,16 +66,16 @@ jobs:
          run: npm test
          
        - name: Publish
-         run: jf npm publish
+         run: jf npm publish --build-name $GITHUB_JOB  --build-number $GITHUB_RUN_ID
          
        - name: Publish Build info With JFrog CLI
          run: |
           # Collect environment variables for the build
-          jf rt build-collect-env
+          jf rt build-collect-env $GITHUB_JOB $GITHUB_RUN_ID
           # Collect VCS details from git and add them to the build
-          jf rt build-add-git
+          jf rt build-add-git $GITHUB_JOB $GITHUB_RUN_ID
           # Publish build info
-          jf rt build-publish
+          jf rt build-publish $GITHUB_JOB $GITHUB_RUN_ID
       #Adding a Delay for the Xray Security Scan for the Builds.
        - name: Sleep for 60 seconds
          uses: jakejarvis/wait-action@master
