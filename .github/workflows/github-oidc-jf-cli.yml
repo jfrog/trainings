@@ -18,8 +18,8 @@ jobs:
      runs-on: ubuntu-latest
      environment: oidc
      env:
-      OIDC_AUDIENCE: 'jfrog-github'
-      OIDC_PROVIDER: 'github-oidc'
+      # OIDC_AUDIENCE: 'jfrog-github'
+      # OIDC_PROVIDER: 'github-oidc'
       # Prerequisite Repository Settings in UI: 'training-npm' used as PLATFORM_REPO, is a virtual repository. This Virtual Repository, 
       # consists of a local npm repository to upload the artifact '' and a remote npm repo " to resolve build dependencies. 
       #The Default Deployment Repository Setting, inside the Virtual Repo is set to Local Repo ''
@@ -57,7 +57,6 @@ jobs:
            jf c show
            jf eot github-oidc $JFROG_CLI_OIDC_EXCHANGE_TOKEN_ID
            jf c s
-           jf c use github-oidc
            jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
            jf npm install
        - name: Install Dependencies
