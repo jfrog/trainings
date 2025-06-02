@@ -14,7 +14,7 @@ permissions:
   attestations: write
   contents: read
 jobs:
-  build:
+  JFrog-GitHub-OIDC-Integration-Using-JF-CLI:
      runs-on: ubuntu-latest
      environment: oidc
      env:
