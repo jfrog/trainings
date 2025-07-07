@@ -1,1 +1,9 @@
-{"environments":"DEV","key":"myproject-npm","packageType":"npm","rclass":"virtual","repositories":"myproject-npmjs-local","myproject-npmjs-remote"}
+{
+  "key": "myproject-npm",
+  "packageType": "npm",
+  "rclass": "virtual",
+  "repoLayoutRef": "npm-default",
+  "repositories": "myproject-npmjs-local,myproject-npmjs-remote",
+  "defaultDeploymentRepo": "myproject-npmjs-local",
+  "description": "Virtual NPM repository combining local and remote for DEV."
+}
