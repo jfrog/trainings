@@ -1,0 +1,9 @@
+{
+  "key": "project_key-maven",
+  "packageType": "maven",
+  "rclass": "virtual",
+  "repoLayoutRef": "maven-2-default",
+  "repositories": "project_key-maven-dev-local,project_key-maven-rc-local,project_key-maven-release-local,project_key-maven-prod-local,mavencentral-remote",
+  "defaultDeploymentRepo": "project_key-maven-rc-local",
+  "description": "Virtual Maven repository for mproject_key, combining local and remote repos."
+}
