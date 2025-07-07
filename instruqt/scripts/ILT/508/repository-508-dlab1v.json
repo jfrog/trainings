@@ -1,1 +1,9 @@
-{"environments":"DEV","key":"myproject-docker","packageType":"docker","rclass":"virtual","repositories":"myproject-docker-local","myproject-docker-remote"}
+{
+    "key": "myproject-docker",
+    "packageType": "docker",
+    "rclass": "virtual",
+    "repoLayoutRef": "simple-default",
+    "repositories": "myproject-docker-local,myproject-docker-remote",
+    "defaultDeploymentRepo": "myproject-docker-local",
+    "description": "Virtual Docker repository combining local and remote for DEV."
+  }
