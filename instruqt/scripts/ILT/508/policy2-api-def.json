@@ -1,0 +1,23 @@
+{
+    "name": "myproject_license_policy",
+    "type": "license",
+    "author": "admin",
+    "rules": [
+        {
+            "name": "blacklist_apache",
+            "priority": 1,
+            "actions": {
+                "block_download": {
+                    "unscanned": true,
+                    "active": true
+                }
+            },
+            "criteria": {
+                "banned_licenses": [
+                    "Apache-2.0"
+                ],
+                "allow_unknown": false
+            }
+        }
+    ]
+}
