@@ -1,0 +1,22 @@
+{
+    "name": "myproject_security_policy2",
+    "type": "security",
+    "author": "admin",
+    "rules": [
+        {
+            "name": "critical",
+            "priority": 1,
+            "actions": {
+                "block_download": {
+                    "unscanned": true,
+                    "active": true
+                }
+            },
+            "criteria": {
+                "fix_version_dependant": false,
+                "malicious_package": false,
+                "min_severity": "High"
+            }
+        }
+    ]
+}
