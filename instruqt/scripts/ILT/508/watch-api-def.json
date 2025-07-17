@@ -1,0 +1,25 @@
+{
+    "general_data": {
+        "name": "CI",
+        "description": "Creating a watch policy using API",
+        "active": true
+    },
+    "project_resources": {
+        "resources": [
+            {
+                "type": "all-repos",
+                "bin_mgr_id": "default"
+            }
+        ]
+    },
+    "assigned_policies": [
+        {
+            "name": "myproject_security_policy",
+            "type": "security"
+        },
+        {
+            "name": "myproject_license_policy",
+            "type": "license"
+        }
+    ]
+}
