@@ -2,6 +2,7 @@
   "key": "myproject-npm",
   "packageType": "npm",
   "rclass": "virtual",
+  "environments":"DEV",
   "repoLayoutRef": "npm-default",
   "repositories": "myproject-npmjs-local,myproject-npmjs-remote",
   "defaultDeploymentRepo": "myproject-npmjs-local",
